@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+.idea
+deployment
+packages/server/**/public
+packages/web/build
+log
+*.log

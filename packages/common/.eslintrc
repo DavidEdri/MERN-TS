@@ -1,0 +1,27 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "packages/common/tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/quotes": ["error", "double"],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-shadow": "warn",
+    "no-console": "off",
+    "nonblock-statement-body-position": "off",
+    "curly": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
+}
