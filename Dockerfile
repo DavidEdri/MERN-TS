@@ -14,8 +14,8 @@ COPY ./packages/common/dist ./packages/common/dist
 COPY ./packages/web/build ./packages/server/dist/public
 COPY ./packages/server/.env ./packages/server/.env
 
-RUN cd packages/server && yarn add core-js@2.5.7 && cd ../..
+WORKDIR /mern/packages/server
 
 EXPOSE 5000
 
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "start"]
