@@ -19,9 +19,14 @@
     "no-console": "off",
     "nonblock-statement-body-position": "off",
     "curly": "off",
-    "@typescript-eslint/no-explicit-any": "off",
     "import/prefer-default-export": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "implicit-arrow-linebreak": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "consistent-return": "off",
+    "comma-dangle": "off",
+    "no-underscore-dangle": "off",
+    "operator-linebreak": "off",
+    "object-curly-newline": "off"
   }
 }

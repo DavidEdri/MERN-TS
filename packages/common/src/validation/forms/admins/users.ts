@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { concatObjects } from "../../../functions";
-import { registerFields } from "../register";
+import { registerFields } from "../auth/register";
 import { requiredField, rank, boolField } from "../../inputs";
 
 const activeField = boolField("active");

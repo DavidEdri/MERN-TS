@@ -1,6 +1,6 @@
 import { adminRank } from "../constants";
 
-type Obj = Record<string, unknown>;
+type Obj = Record<string, any>;
 type PickExcludeFunc = (obj: Obj, keys: string[]) => Obj;
 
 export const pick: PickExcludeFunc = (obj, keys) => {
