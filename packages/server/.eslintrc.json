@@ -26,7 +26,6 @@
     "consistent-return": "off",
     "@typescript-eslint/no-this-alias": "off" /* mongoose pre */,
     "func-names": "off" /* mongoose pre */,
-    "comma-dangle": "off",
     "no-underscore-dangle": "off",
     "operator-linebreak": "off",
     "object-curly-newline": "off",

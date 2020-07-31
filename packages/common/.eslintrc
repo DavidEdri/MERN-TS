@@ -24,7 +24,6 @@
     "implicit-arrow-linebreak": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "consistent-return": "off",
-    "comma-dangle": "off",
     "no-underscore-dangle": "off",
     "operator-linebreak": "off",
     "object-curly-newline": "off"

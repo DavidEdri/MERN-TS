@@ -11,6 +11,11 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
+      }
     }
   },
   "extends": [
@@ -22,6 +27,12 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/quotes": ["error", "double"],
-    "@typescript-eslint/no-unused-vars": "warn"
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off" /* redux toolkit */,
+    "implicit-arrow-linebreak": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-empty": "off"
   }
 }
