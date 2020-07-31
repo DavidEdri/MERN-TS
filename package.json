@@ -8,9 +8,9 @@
     "server:dev": "npm run dev --prefix packages/server",
     "serve": "npm run start --prefix packages/server",
     "web": "npm run start --prefix packages/web",
-    "dev": "concurrently \"npm run server:dev\" \"npm run common:dev\"",
-    "build": "concurrently \"npm run build --prefix packages/server\" \"npm run build --prefix packages/common\"",
-    "clean": "concurrently \"npm run clean --prefix packages/server \" \"npm run clean --prefix packages/common\"",
+    "dev": "concurrently \"npm run server:dev\" \"npm run common:dev\" \"npm run web\"",
+    "build": "concurrently \"npm run build --prefix packages/server\" \"npm run build --prefix packages/common\" \"npm run build --prefix packages/web\"",
+    "clean": "concurrently \"npm run clean --prefix packages/server \" \"npm run clean --prefix packages/common\" \"npm run clean --prefix packages/web \"",
     "test": "npm run test --prefix packages/server"
   },
   "devDependencies": {
