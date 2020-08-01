@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/State";
 
 export default function Home() {
+  // TODO fix useSelector
   const user = useSelector((state: RootState) => state.auth.user);
-  return <div>{`hello ${user.name}`}</div>;
+  return <div>{`hello ${user!.name}`}</div>;
 }

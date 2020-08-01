@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-// TODO add payload type
+import { UserPayload } from "@project/types";
+
 type State = {
   isLoggedin: boolean;
-  user: {
-    [key: string]: any;
-  };
+  user?: UserPayload;
 };
 
 const initialState: State = {
   isLoggedin: false,
-  user: {},
+  user: undefined,
 };
 
 const slice = createSlice({

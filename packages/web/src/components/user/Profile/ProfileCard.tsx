@@ -23,6 +23,7 @@ import ShowLessIcon from "@material-ui/icons/ExpandLess";
 import EmailIcon from "@material-ui/icons/Email";
 import text from "../../../helpers/text";
 import { RootState } from "../../../redux/State";
+import { UserPayload } from "@project/types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +67,8 @@ type Props = {
 
 const ProfileInfo: React.FC<Props> = ({ showCollapse }) => {
   const classes = useStyles();
-  const user = useSelector((state: RootState) => state.auth.user);
+  // TODO fix useSelector
+  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
   const [showInfo, setShowInfo] = useState(showCollapse);
 
   const toggleShow = () => setShowInfo((old) => !old);

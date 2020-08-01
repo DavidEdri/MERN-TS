@@ -1,7 +1,8 @@
 import React from "react";
-import EZFormikUI from "ez-formikui";
+import EZFormikUI, { Fields } from "ez-formikui";
 import { useSelector, useDispatch } from "react-redux";
 import { validation } from "@project/common";
+import { UserPayload } from "@project/types";
 import Grid from "@material-ui/core/Grid";
 import { isProduction } from "../../../../helpers/functions";
 import { refreshJwt } from "../../../../redux/actions/authActions";
@@ -9,8 +10,7 @@ import text from "../../../../helpers/text";
 import { RootState } from "../../../../redux/State";
 import EditPassword from "./EditPassword";
 
-// TODO add user type and fields type
-const fields = (user: any) => [
+const fields = (user: UserPayload): Fields => [
   {
     fieldName: "email",
     label: text.emailLabel,
@@ -29,13 +29,15 @@ const fields = (user: any) => [
   {
     fieldName: "passwords",
     type: "other",
+    label: text.changePassword,
     component: EditPassword,
     initialValue: { password: "", password2: "" },
   },
 ];
 
 export default function EditInfo() {
-  const user = useSelector((state: RootState) => state.auth.user);
+  // TODO fix useSelector
+  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
   const dispatch = useDispatch();
 
   const afterDefaultSubmit = async () => {
@@ -47,6 +49,7 @@ export default function EditInfo() {
     <Grid container justify="center" alignItems="center">
       <Grid item md={6} xs={12}>
         <EZFormikUI
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           fields={fields(user)}
           title={text.editProfileInfo}
           onSubmit="/users/userActions/editInfo"

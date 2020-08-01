@@ -4,14 +4,14 @@ import jwt from "jsonwebtoken";
 import moment from "moment";
 import nodemailer from "nodemailer";
 import { RequestHandler } from "express";
-import { validation, functions } from "@project/common";
+import { pick, omit } from "lodash";
+import { validation } from "@project/common";
 import returnText from "../_text";
 import { mailTemplates, functions as utilsFunctions } from "../../utils";
 import { mailConfig } from "../../config";
 import User from "../../models/User";
 
 const formsValidations = validation.forms;
-const { pick, exclude } = functions;
 const { errorHandler } = utilsFunctions;
 
 const register: RequestHandler = async (req, res) => {
@@ -28,14 +28,14 @@ const register: RequestHandler = async (req, res) => {
     }
 
     const newUser = new User({
-      ...exclude(data, ["password2"]),
+      ...omit(data, ["password2"]),
       activateToken: crypto.randomBytes(20).toString("hex"),
     });
 
     const transporter = nodemailer.createTransport(mailConfig);
 
     await transporter.sendMail(
-      mailTemplates.registerEmail(newUser.email, newUser.activateToken!)
+      mailTemplates.registerEmail(newUser.email, newUser.activateToken!),
     );
     await newUser.save();
 
@@ -110,7 +110,7 @@ const passwordReset: RequestHandler = async (req, res) => {
     const { email } = req.body;
     await validation.forms.auth.sendEmail.validate(
       { email },
-      { abortEarly: false }
+      { abortEarly: false },
     );
 
     const user = await User.findOne({ email });
@@ -165,7 +165,7 @@ const passwordResetWithToken: RequestHandler = async (req, res) => {
 
     await validation.forms.auth.changePassword.validate(
       { password, password2 },
-      { abortEarly: false }
+      { abortEarly: false },
     );
 
     const user = await User.findOne({
@@ -201,7 +201,7 @@ const resendActivateMail: RequestHandler = async (req, res) => {
     const transporter = nodemailer.createTransport(mailConfig);
 
     transporter.sendMail(
-      mailTemplates.registerEmail(user.email, user.activateToken)
+      mailTemplates.registerEmail(user.email, user.activateToken),
     );
 
     return res

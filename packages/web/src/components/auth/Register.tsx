@@ -1,14 +1,14 @@
 import React from "react";
-import EZFormikUI from "ez-formikui";
+import EZFormikUI, { Fields } from "ez-formikui";
 import { Link, useHistory } from "react-router-dom";
 import { validation } from "@project/common";
 import { useSelector } from "react-redux";
 import { Button, Grid, Box } from "@material-ui/core";
 import { isProduction } from "../../helpers/functions";
 import text from "../../helpers/text";
+import { RootState } from "../../redux/State";
 
-// TODO fix fields type
-const fields = [
+const fields: Fields = [
   {
     fieldName: "name",
     label: text.fullNameLabel,

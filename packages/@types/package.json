@@ -1,0 +1,6 @@
+{
+  "name": "@project/types",
+  "version": "1.0.0",
+  "main": "src/index.d.js",
+  "types": "src/index.d.ts"
+}

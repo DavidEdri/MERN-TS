@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { OtherComponent } from "ez-formikui";
 import { TextField, Button } from "@material-ui/core";
 import text from "../../../../helpers/text";
 
-// TODO add other component type from ezFormik
-const EditPassword: React.FC<any> = ({ value, errorMsg, setValue }) => {
+const EditPassword: OtherComponent = ({ value, errorMsg, setValue }) => {
   const [editPass, setEditPass] = useState(false);
 
   return (
@@ -18,7 +18,11 @@ const EditPassword: React.FC<any> = ({ value, errorMsg, setValue }) => {
             error={errorMsg !== undefined && "password" in errorMsg}
             label={text.passLabel}
             margin="dense"
-            helperText={errorMsg !== undefined ? errorMsg.password : ""}
+            helperText={
+              errorMsg !== undefined && "password" in errorMsg
+                ? errorMsg.password
+                : ""
+            }
             name="password"
             type="password"
             value={value.password}

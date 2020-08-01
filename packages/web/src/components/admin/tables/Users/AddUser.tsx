@@ -1,6 +1,5 @@
 import React from "react";
-import { AxiosResponse } from "axios";
-import EZFormikUI from "ez-formikui";
+import EZFormikUI, { AfterDefaultSubmit } from "ez-formikui";
 import { constants, validation } from "@project/common";
 import { TableActions } from "../../../common/TableAbstract";
 import text from "../../../../helpers/text";
@@ -10,8 +9,7 @@ type Props = {
 };
 
 const AddUser: React.FC<Props> = ({ tableActions }) => {
-  // TODO add ez-formikui afterDefaultSubmit type
-  const afterDefaultSubmit = (res?: AxiosResponse<any>) => {
+  const afterDefaultSubmit: AfterDefaultSubmit = (res) => {
     tableActions.setTableData((old) => [...old, res?.data]);
     tableActions.closeDialog();
   };

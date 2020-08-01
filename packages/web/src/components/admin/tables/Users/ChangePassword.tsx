@@ -1,5 +1,5 @@
 import React from "react";
-import EZFormikUI from "ez-formikui";
+import EZFormikUI, { AfterDefaultSubmit } from "ez-formikui";
 import { validation } from "@project/common";
 import { TableActions } from "../../../common/TableAbstract";
 import text from "../../../../helpers/text";
@@ -11,8 +11,7 @@ type Props = {
 };
 
 const ChangePassword: React.FC<Props> = ({ tableActions, url, rowData }) => {
-  // TODO add ez-formikui afterDefaultSubmit type
-  const afterDefaultSubmit = () => {
+  const afterDefaultSubmit: AfterDefaultSubmit = () => {
     tableActions.closeDialog();
   };
 

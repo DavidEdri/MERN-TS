@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { UserPayload } from "@project/types";
 import { Grid, Typography, Button, Box } from "@material-ui/core";
 import text from "../../../helpers/text";
 import { RootState } from "../../../redux/State";
@@ -9,7 +10,8 @@ import { RootState } from "../../../redux/State";
 export default function ActivateAccount() {
   const [clickable, setClickable] = useState(true);
   const history = useHistory();
-  const user = useSelector((state: RootState) => state.auth.user);
+  // TODO fix useSelector
+  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
   const userID = user?._id;
 
   const handleClick = async () => {

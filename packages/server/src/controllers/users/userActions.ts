@@ -38,7 +38,7 @@ const editInfo: RequestHandler = async (req, res) => {
   try {
     await validation.forms.users.editInfo.validate(
       { name },
-      { abortEarly: false }
+      { abortEarly: false },
     );
 
     const user = await User.findOne({ email });
@@ -51,7 +51,7 @@ const editInfo: RequestHandler = async (req, res) => {
       try {
         await validation.forms.auth.changePassword.validate(
           { password, password2 },
-          { abortEarly: false }
+          { abortEarly: false },
         );
       } catch (error) {
         return res

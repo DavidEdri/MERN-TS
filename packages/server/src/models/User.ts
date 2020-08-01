@@ -1,18 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
 import bcrypt from "bcryptjs";
+import type { UserFields } from "@project/common";
 
-export type UserDocument = Document & {
-  name: string;
-  email: string;
-  password: string;
-  rank: number;
-  active: boolean;
-  activateToken?: string;
-  resetPasswordToken?: string;
-  resetPasswordExpires?: Date;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
+export type UserDocument = Document & UserFields;
 
 const UserSchema = new Schema(
   {
@@ -47,7 +37,7 @@ const UserSchema = new Schema(
       type: Date,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 UserSchema.pre<UserDocument>("save", function (next) {

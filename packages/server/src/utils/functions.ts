@@ -1,10 +1,9 @@
 import { Request } from "express";
-import { functions } from "@project/common";
+import { pick } from "lodash";
+import { functions, UserPayload } from "@project/common";
 import { logError } from "./logger";
 import returnText from "../controllers/_text";
 import { UserDocument } from "../models/User";
-
-const { pick } = functions;
 
 export const errorHandler = (error: any, req: Request) => {
   let json;
@@ -25,5 +24,6 @@ export const errorHandler = (error: any, req: Request) => {
   return { json, status };
 };
 
-export const userToApi = (user: UserDocument | { [key: string]: any }) =>
-  pick(user, ["_id", "name", "email", "rank", "active"]);
+export const userToApi = (
+  user: UserDocument | { [key: string]: any },
+): UserPayload => pick(user, ["_id", "name", "email", "rank", "active"]);

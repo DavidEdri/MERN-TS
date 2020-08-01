@@ -9,6 +9,7 @@ import {
   Box,
   CircularProgress,
 } from "@material-ui/core";
+import { UserPayload } from "@project/types";
 import { logoutUser } from "../../../redux/actions/authActions";
 import text from "../../../helpers/text";
 import { RootState } from "../../../redux/State";
@@ -19,7 +20,8 @@ const ValidateToken: React.FC<RouteComponentProps<{ token: string }>> = ({
   const [content, setContent] = useState(<CircularProgress />);
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.auth.user);
+  // TODO fix useSelector
+  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
   const { token } = params;
 
   if (user.active) {

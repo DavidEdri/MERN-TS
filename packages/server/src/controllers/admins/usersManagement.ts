@@ -1,11 +1,11 @@
-import { functions, validation } from "@project/common";
+import { validation } from "@project/common";
+import { pick, omit } from "lodash";
 import { RequestHandler } from "express";
 import User from "../../models/User";
 import returnText from "../_text";
 import { functions as utilsFunctions } from "../../utils";
 
 const { userToApi, errorHandler } = utilsFunctions;
-const { pick, exclude } = functions;
 
 const get: RequestHandler = async (req, res) => {
   try {
@@ -40,8 +40,7 @@ const post: RequestHandler = async (req, res) => {
       errors.general = returnText.emailExist;
       return res.status(400).json(errors);
     }
-
-    const newUser = new User(exclude(data, ["password2"]));
+    const newUser = new User(omit(data, ["password2"]));
 
     await newUser.save();
 

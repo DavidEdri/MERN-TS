@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import EZFormikUI from "ez-formikui";
+import EZFormikUI, { Fields, AfterDefaultSubmit } from "ez-formikui";
 import { Link, useHistory, RouteComponentProps } from "react-router-dom";
 import { validation } from "@project/common";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +9,7 @@ import { loginUser } from "../../redux/actions/authActions";
 import text from "../../helpers/text";
 import { RootState } from "../../redux/State";
 
-// TODO fix fields type
-const fields = [
+const fields: Fields = [
   {
     fieldName: "email",
     label: text.emailLabel,
@@ -36,9 +35,8 @@ const Login: React.FC<Props> = ({ location: { state: redirect } }) => {
   const isLoggedin = useSelector((state: RootState) => state.auth.isLoggedin);
   const dispatch = useDispatch();
 
-  // TODO add afterDefaultSubmit type;
-  const afterDefaultSubmit = (res: any) => {
-    const { token } = res.data;
+  const afterDefaultSubmit: AfterDefaultSubmit = (res) => {
+    const { token } = res?.data;
     dispatch(loginUser(token));
 
     if (lastPath) history.push(lastPath);

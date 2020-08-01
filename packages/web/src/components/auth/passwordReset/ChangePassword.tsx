@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import EZFormikUI from "ez-formikui";
+import EZFormikUI, { Fields } from "ez-formikui";
 import { useHistory, RouteComponentProps } from "react-router-dom";
 import { validation } from "@project/common";
 import { useSelector } from "react-redux";
@@ -10,8 +10,7 @@ import Loading from "../../common/Loading";
 import text from "../../../helpers/text";
 import { RootState } from "../../../redux/State";
 
-// TODO fix fields type
-const fields = [
+const fields: Fields = [
   {
     fieldName: "password",
     label: text.passLabel,

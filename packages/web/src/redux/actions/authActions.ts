@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { UserPayload } from "@project/types";
 import { Dispatch } from "react";
 import { setUser } from "../slices/auth";
 import { setAuthToken } from "../../helpers/functions";
@@ -12,9 +13,8 @@ export const loginUser = (token: string) => {
 
   return setUser(decoded);
 };
-// TODO add decoded jwt type
-export const setCurrentUser = (decoded: { [x: string]: any }) =>
-  setUser(decoded);
+
+export const setCurrentUser = (decoded: UserPayload) => setUser(decoded);
 
 export const refreshJwt = async (dispatch: Dispatch<any>) => {
   const res = await axios.get("/users/userActions/refreshJWT");
