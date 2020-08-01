@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 import bcrypt from "bcryptjs";
-import type { UserFields } from "@project/common";
+import type { UserFields } from "@project/types";
 
 export type UserDocument = Document & UserFields;
 

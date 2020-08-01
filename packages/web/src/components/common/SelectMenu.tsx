@@ -67,7 +67,7 @@ const SelectMenu: React.FC<Props> = ({ buttonText, links }) => {
               }
             }}
           >
-            {link.to}
+            {link.text}
           </MenuItem>
         ))}
       </Menu>

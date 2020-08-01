@@ -140,7 +140,7 @@ const NavbarAbstract: React.FC<Props> = ({ links, adminLinks }) => {
               links={[
                 {
                   text: text.profile,
-                  to: () => "/dashboard/profile/home",
+                  to: "/dashboard/profile/home",
                 },
                 {
                   text: text.logout,

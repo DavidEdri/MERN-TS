@@ -54,7 +54,7 @@ export default function EditInfo() {
           title={text.editProfileInfo}
           onSubmit="/users/userActions/editInfo"
           afterDefaultSubmit={afterDefaultSubmit}
-          validationSchema={validation.inputs.requiredField("name")}
+          validationSchema={validation.forms.users.editInfo}
           useCaptcha={isProduction()}
         />
       </Grid>

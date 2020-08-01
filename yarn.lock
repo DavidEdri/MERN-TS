@@ -7657,7 +7657,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jss-plugin-camel-case@^10.0.3, jss-plugin-camel-case@^10.3.0:
+jss-plugin-camel-case@^10.0.3:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-camel-case/-/jss-plugin-camel-case-10.3.0.tgz#ae4da53b39a6e3ea94b70a20fc41c11f0b87386a"
   integrity sha512-tadWRi/SLWqLK3EUZEdDNJL71F3ST93Zrl9JYMjV0QDqKPAl0Liue81q7m/nFUpnSTXczbKDy4wq8rI8o7WFqA==
@@ -7666,16 +7666,7 @@ jss-plugin-camel-case@^10.0.3, jss-plugin-camel-case@^10.3.0:
     hyphenate-style-name "^1.0.3"
     jss "^10.3.0"
 
-jss-plugin-compose@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/jss-plugin-compose/-/jss-plugin-compose-10.3.0.tgz#b37e28bf5555620ecd2a3668fe7229ed1101c9d2"
-  integrity sha512-ugJYobeN9mawx7Nv5BrSLhVgU1kJsNpLEfTPKjgMRH7MlHNinrF5O9h4rVTZZvJUZ298JbpPu2zGrwvsjgFwag==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "^10.3.0"
-    tiny-warning "^1.0.2"
-
-jss-plugin-default-unit@^10.0.3, jss-plugin-default-unit@^10.3.0:
+jss-plugin-default-unit@^10.0.3:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.3.0.tgz#cd74cf5088542620a82591f76c62c6b43a7e50a6"
   integrity sha512-tT5KkIXAsZOSS9WDSe8m8lEHIjoEOj4Pr0WrG0WZZsMXZ1mVLFCSsD2jdWarQWDaRNyMj/I4d7czRRObhOxSuw==
@@ -7683,24 +7674,7 @@ jss-plugin-default-unit@^10.0.3, jss-plugin-default-unit@^10.3.0:
     "@babel/runtime" "^7.3.1"
     jss "^10.3.0"
 
-jss-plugin-expand@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/jss-plugin-expand/-/jss-plugin-expand-10.3.0.tgz#c0be8f44e59fd997f1c427fff232d573677ff226"
-  integrity sha512-zyphg4NqZjMu9bLbx0QBgziCQKIowNO5yVLIa+kLVi6sE9IMKV8p2SrBtLtLktTjM72gO4u/kKnlCz0SckQuyQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "^10.3.0"
-
-jss-plugin-extend@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/jss-plugin-extend/-/jss-plugin-extend-10.3.0.tgz#5a17c146f1b1d6652036711b1a3bf7694f969f44"
-  integrity sha512-FTRG3RNaMYO+j/X7DOo+nBtou9A2slonaip363KvHKo2Ji9bEK9WDbytOTaYGdeX/UuwJ2C/PQd5lMs4lB0Vow==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "^10.3.0"
-    tiny-warning "^1.0.2"
-
-jss-plugin-global@^10.0.3, jss-plugin-global@^10.3.0:
+jss-plugin-global@^10.0.3:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-global/-/jss-plugin-global-10.3.0.tgz#6b883e74900bb71f65ac2b19bea78f7d1e85af3f"
   integrity sha512-etYTG/y3qIR/vxZnKY+J3wXwObyBDNhBiB3l/EW9/pE3WHE//BZdK8LFvQcrCO48sZW1Z6paHo6klxUPP7WbzA==
@@ -7708,7 +7682,7 @@ jss-plugin-global@^10.0.3, jss-plugin-global@^10.3.0:
     "@babel/runtime" "^7.3.1"
     jss "^10.3.0"
 
-jss-plugin-nested@^10.0.3, jss-plugin-nested@^10.3.0:
+jss-plugin-nested@^10.0.3:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-nested/-/jss-plugin-nested-10.3.0.tgz#ae8aceac95e09c3d40c991ea32403fb647d9e0a8"
   integrity sha512-qWiEkoXNEkkZ+FZrWmUGpf+zBsnEOmKXhkjNX85/ZfWhH9dfGxUCKuJFuOWFM+rjQfxV4csfesq4hY0jk8Qt0w==
@@ -7717,7 +7691,7 @@ jss-plugin-nested@^10.0.3, jss-plugin-nested@^10.3.0:
     jss "^10.3.0"
     tiny-warning "^1.0.2"
 
-jss-plugin-props-sort@^10.0.3, jss-plugin-props-sort@^10.3.0:
+jss-plugin-props-sort@^10.0.3:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-props-sort/-/jss-plugin-props-sort-10.3.0.tgz#5b0625f87b6431a7969c56b0d8c696525969bfe4"
   integrity sha512-boetORqL/lfd7BWeFD3K+IyPqyIC+l3CRrdZr+NPq7Noqp+xyg/0MR7QisgzpxCEulk+j2CRcEUoZsvgPC4nTg==
@@ -7725,7 +7699,7 @@ jss-plugin-props-sort@^10.0.3, jss-plugin-props-sort@^10.3.0:
     "@babel/runtime" "^7.3.1"
     jss "^10.3.0"
 
-jss-plugin-rule-value-function@^10.0.3, jss-plugin-rule-value-function@^10.3.0:
+jss-plugin-rule-value-function@^10.0.3:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-function/-/jss-plugin-rule-value-function-10.3.0.tgz#498b0e2bae16cb316a6bdb73fd783cf9604ba747"
   integrity sha512-7WiMrKIHH3rwxTuJki9+7nY11r1UXqaUZRhHvqTD4/ZE+SVhvtD5Tx21ivNxotwUSleucA/8boX+NF21oXzr5Q==
@@ -7734,25 +7708,7 @@ jss-plugin-rule-value-function@^10.0.3, jss-plugin-rule-value-function@^10.3.0:
     jss "^10.3.0"
     tiny-warning "^1.0.2"
 
-jss-plugin-rule-value-observable@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-observable/-/jss-plugin-rule-value-observable-10.3.0.tgz#fd542aa72719b1ef35b2c1db7a3523f9487e75a9"
-  integrity sha512-F0qISCiWjg2Ha24Zc143n30NaWBOTsJLTwuN05ZAuLMp81YD9eRMQbUQUFq6fJVh82xivxheatajTso2qLxFEQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "^10.3.0"
-    symbol-observable "^1.2.0"
-
-jss-plugin-template@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/jss-plugin-template/-/jss-plugin-template-10.3.0.tgz#8516574260f531b20b9bb4bfb23bb2b5ca70a93d"
-  integrity sha512-p862BehZeAZRcBZT834rCHO58TTimYaG1eFe1x3uNjKJkdfGpRF00bGN2NQ+0u5yBoeqz1gPG/YpdcDkpHvnFA==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "^10.3.0"
-    tiny-warning "^1.0.2"
-
-jss-plugin-vendor-prefixer@^10.0.3, jss-plugin-vendor-prefixer@^10.3.0:
+jss-plugin-vendor-prefixer@^10.0.3:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-vendor-prefixer/-/jss-plugin-vendor-prefixer-10.3.0.tgz#b09c13a4d05a055429d8a24e19cc01ce049f0ed4"
   integrity sha512-sZQbrcZyP5V0ADjCLwUA1spVWoaZvM7XZ+2fSeieZFBj31cRsnV7X70FFDerMHeiHAXKWzYek+67nMDjhrZAVQ==
@@ -7760,26 +7716,6 @@ jss-plugin-vendor-prefixer@^10.0.3, jss-plugin-vendor-prefixer@^10.3.0:
     "@babel/runtime" "^7.3.1"
     css-vendor "^2.0.8"
     jss "^10.3.0"
-
-jss-preset-default@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/jss-preset-default/-/jss-preset-default-10.3.0.tgz#029d8b91a7f6f7d86ece925bfe62380921ebf9b2"
-  integrity sha512-LwDj4t8jBe0S/hXuR0THmhAsbngw7134efrWvJrkXLj+/+cxRQQAnsXWS6DBEZT5nrXaWH0C9HAeR2v2ZZKPWA==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "^10.3.0"
-    jss-plugin-camel-case "^10.3.0"
-    jss-plugin-compose "^10.3.0"
-    jss-plugin-default-unit "^10.3.0"
-    jss-plugin-expand "^10.3.0"
-    jss-plugin-extend "^10.3.0"
-    jss-plugin-global "^10.3.0"
-    jss-plugin-nested "^10.3.0"
-    jss-plugin-props-sort "^10.3.0"
-    jss-plugin-rule-value-function "^10.3.0"
-    jss-plugin-rule-value-observable "^10.3.0"
-    jss-plugin-template "^10.3.0"
-    jss-plugin-vendor-prefixer "^10.3.0"
 
 jss-rtl@^0.3.0:
   version "0.3.0"

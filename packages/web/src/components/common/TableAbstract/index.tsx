@@ -45,6 +45,7 @@ type Props = {
   addFormFullWidth?: boolean;
 };
 
+// TODO fix console errors
 const TableAbstract: React.FC<Props> = ({
   title,
   urls,
@@ -95,15 +96,17 @@ const TableAbstract: React.FC<Props> = ({
       columns={columns(tableActions)}
       editable={{
         onRowUpdate: urls.update
-          ? (newData) =>
+          ? (newData, oldData) =>
               new Promise((resolve, reject) => {
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 Axios.put(urls.update!(newData._id), newData)
                   .then(() => {
                     const d = [...tableData];
-                    const index = tableData.indexOf(newData);
-                    d[index] = newData;
-                    setTableData(d);
+                    const index = tableData.indexOf(oldData || {});
+                    if (index > -1) {
+                      d[index] = newData;
+                      setTableData(d);
+                    }
 
                     resolve();
                   })
