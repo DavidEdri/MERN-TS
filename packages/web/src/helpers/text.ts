@@ -19,6 +19,8 @@ export default {
   dashboardLink: "Dashboard",
   adminLink: "Admin",
 
+  // tableAbstract
+  tableAdd: "Add new item",
   // admin links
   adminUsersLink: "Users",
   adminPanel: "Admin Panel",

@@ -83,7 +83,7 @@ describe("POST /admins/usersManagement/changePass/{id}", () => {
     const user = await User.findById(userID);
     const isMatch = await bcrypt.compare(
       newPass.password,
-      user ? user.password : ""
+      user ? user.password : "",
     );
 
     expect(isMatch).toBe(true);

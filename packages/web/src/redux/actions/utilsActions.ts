@@ -1,8 +1,9 @@
+import { Color as VariantType } from "@material-ui/lab/Alert";
 import { setDialog, setSnackbar } from "../slices/utils";
 
 export const openDialog = (
   title: string,
-  body: React.FC | string,
+  body: JSX.Element | string,
   buttonText = "",
   fullscreen = false,
 ) =>
@@ -23,9 +24,7 @@ export const closeDialog = () =>
     isOpen: false,
   });
 
-export type SnackbarVariant = "error" | "info" | "success" | "warning";
-
-export const openSnackbar = (msg: string, variant: SnackbarVariant) =>
+export const openSnackbar = (msg: string | JSX.Element, variant: VariantType) =>
   setSnackbar({
     msg,
     variant,
@@ -33,5 +32,5 @@ export const openSnackbar = (msg: string, variant: SnackbarVariant) =>
   });
 
 // passing variant on close to keep same color
-export const closeSnackbar = (variant: SnackbarVariant) =>
+export const closeSnackbar = (variant: VariantType) =>
   setSnackbar({ msg: "", variant });

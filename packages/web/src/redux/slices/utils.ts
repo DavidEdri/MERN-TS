@@ -1,10 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Color as VariantType } from "@material-ui/lab/Alert";
 
-const initialState = {
+type State = {
+  dialog: {
+    title: string;
+    body: string;
+    buttonText?: string;
+    fullscreen: boolean;
+    isOpen: boolean;
+  };
+  snackbar: {
+    msg: string;
+    variant: VariantType;
+    isOpen: boolean;
+  };
+};
+
+const initialState: State = {
   dialog: {
     title: "",
     body: "",
-    buttonText: "",
+    buttonText: undefined,
     fullscreen: false,
     isOpen: false,
   },
