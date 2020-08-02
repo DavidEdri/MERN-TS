@@ -31,7 +31,7 @@ const post: RequestHandler = async (req, res) => {
 
   const errors: { [key: string]: string } = {};
   try {
-    await validation.forms.admins.adminAddUser.validate(data, {
+    await validation.admins.adminAddUser.validate(data, {
       abortEarly: false,
     });
     const user = await User.findOne({ email: data.email });
@@ -71,7 +71,7 @@ const put: RequestHandler = async (req, res) => {
   const data = pick(req.body, ["name", "rank", "active"]);
 
   try {
-    await validation.forms.admins.adminEditUser.validate(data, {
+    await validation.admins.adminEditUser.validate(data, {
       abortEarly: false,
     });
 
@@ -98,7 +98,7 @@ const changePass: RequestHandler = async (req, res) => {
   const data = pick(req.body, ["password", "password2"]);
 
   try {
-    await validation.forms.auth.changePassword.validate(data, {
+    await validation.auth.changePassword.validate(data, {
       abortEarly: false,
     });
 

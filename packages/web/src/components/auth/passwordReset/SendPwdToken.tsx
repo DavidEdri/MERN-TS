@@ -41,7 +41,7 @@ export default function SendPwdToken() {
             paragraph="Enter your email"
             onSubmit="/guests/auth/passwordReset"
             afterDefaultSubmit={afterDefaultSubmit}
-            validationSchema={validation.inputs.email}
+            validationSchema={validation.auth.sendEmail}
             useCaptcha={isProduction()}
           />
         </Grid>

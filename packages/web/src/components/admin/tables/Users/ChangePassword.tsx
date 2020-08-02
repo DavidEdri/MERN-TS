@@ -35,7 +35,7 @@ const ChangePassword: React.FC<Props> = ({ tableActions, url, rowData }) => {
       ]}
       onSubmit={url}
       paragraph={text.usersChangePassFor(rowData.email)}
-      validationSchema={validation.forms.auth.changePassword}
+      validationSchema={validation.auth.changePassword}
       afterDefaultSubmit={afterDefaultSubmit}
     />
   );

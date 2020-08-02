@@ -58,7 +58,7 @@ const Login: React.FC<Props> = ({ location: { state: redirect } }) => {
           paragraph={text.loginParagraph}
           onSubmit="/guests/auth/login"
           afterDefaultSubmit={afterDefaultSubmit}
-          validationSchema={validation.forms.auth.login}
+          validationSchema={validation.auth.login}
           useCaptcha={isProduction()}
         />
         <Box

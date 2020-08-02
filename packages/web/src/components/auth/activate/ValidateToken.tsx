@@ -24,13 +24,13 @@ const ValidateToken: React.FC<RouteComponentProps<{ token: string }>> = ({
   const user = useSelector((state: RootState): UserPayload => state.auth.user!);
   const { token } = params;
 
-  if (user.active) {
+  if (user?.active) {
     history.push("/dashboard");
   }
 
   useEffect(() => {
     const handleRedirect = () => {
-      if ("_id" in user) {
+      if (user) {
         dispatch(logoutUser());
       }
       history.push("/login");

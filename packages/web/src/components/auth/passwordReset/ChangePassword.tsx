@@ -92,7 +92,7 @@ const ChangePassword: React.FC<RouteComponentProps<{ token: string }>> = ({
             fields={fields}
             onSubmit={`/guests/auth/passwordReset/${token}`}
             afterDefaultSubmit={afterDefaultSubmit}
-            validationSchema={validation.inputs.passwordConfirm}
+            validationSchema={validation.auth.changePassword}
             useCaptcha={isProduction()}
           />
         ) : (

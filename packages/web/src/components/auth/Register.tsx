@@ -60,7 +60,7 @@ export default function Register() {
           paragraph={text.registerParagraph}
           onSubmit="/guests/auth/register"
           afterDefaultSubmit={afterDefaultSubmit}
-          validationSchema={validation.forms.auth.register}
+          validationSchema={validation.auth.register}
           useCaptcha={isProduction()}
         />
         <Box display="flex" justifyContent="center">

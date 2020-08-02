@@ -11,7 +11,7 @@ import { mailTemplates, functions as utilsFunctions } from "../../utils";
 import { mailConfig } from "../../config";
 import User from "../../models/User";
 
-const formsValidations = validation.forms;
+const formsValidations = validation;
 const { errorHandler } = utilsFunctions;
 
 const register: RequestHandler = async (req, res) => {
@@ -99,7 +99,6 @@ const login: RequestHandler = async (req, res) => {
     return res.status(200).json({ success: true, token: `Bearer ${token}` });
   } catch (error) {
     const { json, status } = errorHandler(error, req);
-    console.log(json);
     return res.status(status).json(json);
   }
 };
@@ -108,10 +107,7 @@ const passwordReset: RequestHandler = async (req, res) => {
   const errors: { [key: string]: string } = {};
   try {
     const { email } = req.body;
-    await validation.forms.auth.sendEmail.validate(
-      { email },
-      { abortEarly: false },
-    );
+    await validation.auth.sendEmail.validate({ email }, { abortEarly: false });
 
     const user = await User.findOne({ email });
 
@@ -163,7 +159,7 @@ const passwordResetWithToken: RequestHandler = async (req, res) => {
     const { token } = req.params;
     const { password, password2 } = req.body;
 
-    await validation.forms.auth.changePassword.validate(
+    await validation.auth.changePassword.validate(
       { password, password2 },
       { abortEarly: false },
     );

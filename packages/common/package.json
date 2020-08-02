@@ -21,6 +21,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@project/types": "1.0.0",
     "yup": "^0.29.2"
   }
 }

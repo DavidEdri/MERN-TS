@@ -62,7 +62,7 @@ const AddUser: React.FC<Props> = ({ tableActions }) => {
       ]}
       onSubmit="/admins/usersManagement/"
       title={text.adminUsers}
-      validationSchema={validation.forms.admins.adminAddUser}
+      validationSchema={validation.admins.adminAddUser}
       afterDefaultSubmit={afterDefaultSubmit}
     />
   );

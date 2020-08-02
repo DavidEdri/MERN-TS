@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -9,6 +9,9 @@ import { RootState } from "../../../redux/State";
 
 export default function ActivateAccount() {
   const [clickable, setClickable] = useState(true);
+  const [intervalNum, setIntervalNum] = useState<NodeJS.Timeout | undefined>(
+    undefined,
+  );
   const history = useHistory();
   // TODO fix useSelector
   const user = useSelector((state: RootState): UserPayload => state.auth.user!);
@@ -28,10 +31,18 @@ export default function ActivateAccount() {
       }
     }, 1000);
 
+    setIntervalNum(timer);
     try {
       await Axios.post(`/guests/auth/resendActivateMail/${userID}`);
     } catch (error) {}
   };
+
+  useEffect(
+    () => () => {
+      if (intervalNum) clearInterval(intervalNum);
+    },
+    [intervalNum],
+  );
 
   if (user.active) {
     history.push("/dashboard");

@@ -5,6 +5,7 @@ WORKDIR /mern
 COPY ./package.json ./ 
 COPY ./packages/server/package.json ./packages/server/
 COPY ./packages/common/package.json ./packages/common/
+COPY ./packages/@types ./packages/@types
 
 RUN npm i -g yarn --no-bin-links
 RUN yarn install --production
