@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import {
   List,
   ListItem,
@@ -22,8 +21,7 @@ import ShowMoreIcon from "@material-ui/icons/ExpandMore";
 import ShowLessIcon from "@material-ui/icons/ExpandLess";
 import EmailIcon from "@material-ui/icons/Email";
 import text from "../../../helpers/text";
-import { RootState } from "../../../redux/State";
-import { UserPayload } from "@project/types";
+import { useGuaranteedUserSelector } from "../../../redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,8 +65,7 @@ type Props = {
 
 const ProfileInfo: React.FC<Props> = ({ showCollapse }) => {
   const classes = useStyles();
-  // TODO fix useSelector
-  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
+  const user = useGuaranteedUserSelector();
   const [showInfo, setShowInfo] = useState(showCollapse);
 
   const toggleShow = () => setShowInfo((old) => !old);

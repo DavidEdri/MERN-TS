@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   createStyles,
   Theme,
@@ -14,9 +14,9 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import { RootState } from "../../redux/State";
 import { closeDialog } from "../../redux/actions/utilsActions";
 import text from "../../helpers/text";
+import { useTypedSelector } from "../../redux";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -71,7 +71,7 @@ const DialogActions = withStyles((theme: Theme) => ({
 
 export default function Dialog() {
   const dispatch = useDispatch();
-  const dialogState = useSelector((state: RootState) => state.utils.dialog);
+  const dialogState = useTypedSelector((state) => state.utils.dialog);
   const { title, body, buttonText, fullscreen, isOpen } = dialogState;
 
   const handleClose = () => {

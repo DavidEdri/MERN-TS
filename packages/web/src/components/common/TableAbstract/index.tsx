@@ -45,7 +45,7 @@ type Props = {
   addFormFullWidth?: boolean;
 };
 
-// TODO fix console errors
+// TODO fix console errors (errors comes from Material-table package, need to wait for fix)
 const TableAbstract: React.FC<Props> = ({
   title,
   urls,

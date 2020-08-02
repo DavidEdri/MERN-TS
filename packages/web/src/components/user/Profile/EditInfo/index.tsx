@@ -1,14 +1,14 @@
 import React from "react";
 import EZFormikUI, { Fields } from "ez-formikui";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { validation } from "@project/common";
 import { UserPayload } from "@project/types";
 import Grid from "@material-ui/core/Grid";
 import { isProduction } from "../../../../helpers/functions";
 import { refreshJwt } from "../../../../redux/actions/authActions";
 import text from "../../../../helpers/text";
-import { RootState } from "../../../../redux/State";
 import EditPassword from "./EditPassword";
+import { useGuaranteedUserSelector } from "../../../../redux";
 
 const fields = (user: UserPayload): Fields => [
   {
@@ -36,8 +36,7 @@ const fields = (user: UserPayload): Fields => [
 ];
 
 export default function EditInfo() {
-  // TODO fix useSelector
-  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
+  const user = useGuaranteedUserSelector();
   const dispatch = useDispatch();
 
   const afterDefaultSubmit = async () => {

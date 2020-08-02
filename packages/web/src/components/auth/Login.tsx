@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import EZFormikUI, { Fields, AfterDefaultSubmit } from "ez-formikui";
 import { Link, useHistory, RouteComponentProps } from "react-router-dom";
 import { validation } from "@project/common";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, Grid, Box } from "@material-ui/core";
 import { isProduction } from "../../helpers/functions";
 import { loginUser } from "../../redux/actions/authActions";
 import text from "../../helpers/text";
-import { RootState } from "../../redux/State";
+import { useTypedSelector } from "../../redux";
 
 const fields: Fields = [
   {
@@ -32,7 +32,7 @@ type Props = RouteComponentProps<{}, {}, { lastPath?: string }>;
 const Login: React.FC<Props> = ({ location: { state: redirect } }) => {
   const lastPath = redirect ? redirect.lastPath : null;
   const history = useHistory();
-  const isLoggedin = useSelector((state: RootState) => state.auth.isLoggedin);
+  const isLoggedin = useTypedSelector((state) => state.auth.isLoggedin);
   const dispatch = useDispatch();
 
   const afterDefaultSubmit: AfterDefaultSubmit = (res) => {

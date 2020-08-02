@@ -1,9 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import MUISnackbar from "@material-ui/core/Snackbar";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { closeSnackbar } from "../../redux/actions/utilsActions";
-import { RootState } from "../../redux/State";
+import { useTypedSelector } from "../../redux";
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -11,7 +11,7 @@ function Alert(props: AlertProps) {
 
 export default function Snackbar() {
   const dispatch = useDispatch();
-  const snackbarState = useSelector((state: RootState) => state.utils.snackbar);
+  const snackbarState = useTypedSelector((state) => state.utils.snackbar);
   const { msg, variant, isOpen } = snackbarState;
 
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {

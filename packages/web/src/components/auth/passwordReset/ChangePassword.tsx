@@ -3,12 +3,11 @@ import Axios from "axios";
 import EZFormikUI, { Fields } from "ez-formikui";
 import { useHistory, RouteComponentProps } from "react-router-dom";
 import { validation } from "@project/common";
-import { useSelector } from "react-redux";
 import { Grid, Typography, Box } from "@material-ui/core";
 import { isProduction } from "../../../helpers/functions";
 import Loading from "../../common/Loading";
 import text from "../../../helpers/text";
-import { RootState } from "../../../redux/State";
+import { useTypedSelector } from "../../../redux";
 
 const fields: Fields = [
   {
@@ -31,7 +30,7 @@ const ChangePassword: React.FC<RouteComponentProps<{ token: string }>> = ({
   match: { params },
 }) => {
   const history = useHistory();
-  const isLoggedin = useSelector((state: RootState) => state.auth.isLoggedin);
+  const isLoggedin = useTypedSelector((state) => state.auth.isLoggedin);
   const [validToken, setValidToken] = useState(false);
   const [userInfo, setUserInfo] = useState<{ name?: string; email?: string }>(
     {},

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Axios from "axios";
 import { useHistory, RouteComponentProps } from "react-router-dom";
 import {
@@ -9,10 +9,9 @@ import {
   Box,
   CircularProgress,
 } from "@material-ui/core";
-import { UserPayload } from "@project/types";
 import { logoutUser } from "../../../redux/actions/authActions";
 import text from "../../../helpers/text";
-import { RootState } from "../../../redux/State";
+import { useTypedSelector } from "../../../redux";
 
 const ValidateToken: React.FC<RouteComponentProps<{ token: string }>> = ({
   match: { params },
@@ -20,8 +19,7 @@ const ValidateToken: React.FC<RouteComponentProps<{ token: string }>> = ({
   const [content, setContent] = useState(<CircularProgress />);
   const history = useHistory();
   const dispatch = useDispatch();
-  // TODO fix useSelector
-  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
+  const user = useTypedSelector((state) => state.auth.user);
   const { token } = params;
 
   if (user?.active) {

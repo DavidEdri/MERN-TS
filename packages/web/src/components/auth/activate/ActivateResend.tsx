@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { UserPayload } from "@project/types";
 import { Grid, Typography, Button, Box } from "@material-ui/core";
 import text from "../../../helpers/text";
-import { RootState } from "../../../redux/State";
+import { useTypedSelector } from "../../../redux";
 
 export default function ActivateAccount() {
   const [clickable, setClickable] = useState(true);
@@ -13,8 +11,7 @@ export default function ActivateAccount() {
     undefined,
   );
   const history = useHistory();
-  // TODO fix useSelector
-  const user = useSelector((state: RootState): UserPayload => state.auth.user!);
+  const user = useTypedSelector((state) => state.auth.user);
   const userID = user?._id;
 
   const handleClick = async () => {
@@ -44,7 +41,7 @@ export default function ActivateAccount() {
     [intervalNum],
   );
 
-  if (user.active) {
+  if (user?.active) {
     history.push("/dashboard");
   }
 
@@ -60,10 +57,10 @@ export default function ActivateAccount() {
     <Grid container justify="center">
       <Grid item xs={12}>
         <Typography variant="h5" color="primary" align="center" gutterBottom>
-          {text.pleaseActivte}
+          {text.pleaseActivate}
         </Typography>
         <Typography align="center" variant="subtitle1" gutterBottom>
-          {text.didntReciveMain(user.email)}
+          {text.didntReceiveMail(user?.email || "")}
         </Typography>
         <Box display="flex" alignItems="center" justifyContent="center">
           <Button color="primary" disabled={!clickable} onClick={handleClick}>

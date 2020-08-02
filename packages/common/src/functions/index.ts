@@ -6,10 +6,11 @@ type Obj = {
   [key in PropertyName]: any;
 };
 
-export const isAdmin = (user: UserFields | UserPayload) =>
-  user && user.rank >= adminRank;
+type UserParam = UserFields | UserPayload | undefined;
 
-export const isActive = (user: UserFields | UserPayload) =>
+export const isAdmin = (user: UserParam) => user && user.rank >= adminRank;
+
+export const isActive = (user: UserParam) =>
   user && (user.active || isAdmin(user));
 
 export const isYupObj = (o: any) =>

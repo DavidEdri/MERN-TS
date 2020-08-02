@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import clsx from "classnames";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -22,8 +22,8 @@ import text from "../../../helpers/text";
 import SelectMenu from "../SelectMenu";
 import useStyles from "./style";
 import NavLink from "./NavLink";
-import { RootState } from "../../../redux/State";
 import { RouteType } from "../../../routes/RouteType";
+import { useTypedSelector } from "../../../redux";
 
 type LinksArray = RouteType[];
 
@@ -34,7 +34,7 @@ type Props = {
 
 const NavbarAbstract: React.FC<Props> = ({ links, adminLinks }) => {
   const history = useHistory();
-  const auth = useSelector((state: RootState) => state.auth);
+  const auth = useTypedSelector((state) => state.auth);
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>();
   const [open, setOpen] = useState(false);

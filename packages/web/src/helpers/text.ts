@@ -1,4 +1,3 @@
-// TODO : fix typos
 export default {
   // axios config
   serverError: "Server error, try again later",
@@ -40,8 +39,8 @@ export default {
 
   // activate account
   activateInvalid: "Invalid or expired token!",
-  pleaseActivte: "Please activate your account",
-  didntReciveMain: (email: string) => `Didn't received mail to ${email}?`,
+  pleaseActivate: "Please activate your account",
+  didntReceiveMail: (email: string) => `Didn't received mail to ${email}?`,
   clickHere: "Click here",
   resendActivation: "to resend activation link",
   accActivated: "Account activated!",
@@ -51,10 +50,10 @@ export default {
   // login
   login: "Login",
   loginParagraph: "Enter info to login",
-  noAccount: "dont have account?",
+  noAccount: "don't have account?",
   forgotPass: "Forgot password?",
 
-  // regsiter
+  // register
   register: "Register",
   registerParagraph: "Enter info to register",
   alreadyUser: "already a user?",
