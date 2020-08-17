@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import MaterialTable, { Column } from "material-table";
+import MaterialTable, { Column, Options } from "material-table";
 import { useDispatch } from "react-redux";
 import {
   openSnackbar,
@@ -30,7 +30,10 @@ export type TableActions = {
       }[]
     >
   >;
+  addNewRow: (newItem: any) => void;
+  updateRow: (newData: { _id: string; [key: string]: any }) => void;
   closeDialog: () => void;
+  openDialog: (Form: React.ElementType, rowData?: any) => void;
 };
 
 export type Columns = (
@@ -42,7 +45,10 @@ type Props = {
   urls: Urls;
   columns: Columns;
   AddForm?: React.ElementType;
+  EditForm?: React.ElementType;
   addFormFullWidth?: boolean;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  tableOptions?: Options<{}>;
 };
 
 // TODO fix console errors (errors comes from Material-table package, need to wait for fix)
@@ -51,18 +57,50 @@ const TableAbstract: React.FC<Props> = ({
   urls,
   columns,
   AddForm,
+  EditForm,
   addFormFullWidth = false,
+  tableOptions = {},
 }) => {
   const [tableData, setTableData] = useState<{ [key: string]: any }[]>([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const tableActions = {
-    setTableData,
-    closeDialog: () => {
-      dispatch(closeDialog());
-    },
+  const addNewRow: TableActions["addNewRow"] = (newItem) => {
+    setTableData((old) => [newItem, ...old]);
   };
+
+  const updateRow: TableActions["updateRow"] = (newData) => {
+    const d = [...tableData];
+    const index = tableData.findIndex((a) => a._id === newData._id);
+    if (index > -1) {
+      d[index] = newData;
+      setTableData(d);
+    }
+  };
+
+  const closeTableDialog: TableActions["closeDialog"] = () => {
+    dispatch(closeDialog());
+  };
+
+  const tableActions: TableActions = {
+    setTableData,
+    addNewRow,
+    updateRow,
+    closeDialog: closeTableDialog,
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    openDialog: formDialog,
+  };
+
+  function formDialog(Form: React.ElementType, rowData?: any) {
+    dispatch(
+      openDialog(
+        title,
+        <Form tableActions={tableActions} rowData={rowData} />,
+        "",
+        addFormFullWidth,
+      ),
+    );
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -92,6 +130,7 @@ const TableAbstract: React.FC<Props> = ({
         pageSize: 10,
         pageSizeOptions: [10, 100, 1000],
         padding: "dense",
+        ...tableOptions,
       }}
       columns={columns(tableActions)}
       editable={{
@@ -159,26 +198,28 @@ const TableAbstract: React.FC<Props> = ({
               })
           : undefined,
       }}
-      actions={
-        AddForm
+      actions={[
+        ...(AddForm
           ? [
               {
                 icon: "add",
                 tooltip: text.tableAdd,
                 isFreeAction: true,
-                onClick: () =>
-                  dispatch(
-                    openDialog(
-                      title,
-                      <AddForm tableActions={tableActions} />,
-                      "",
-                      addFormFullWidth,
-                    ),
-                  ),
+                onClick: () => formDialog(AddForm),
               },
             ]
-          : undefined
-      }
+          : []),
+        ...(EditForm
+          ? [
+              {
+                icon: "edit",
+                tooltip: "ערוך",
+                onClick: (e: any, rowData: any) =>
+                  formDialog(EditForm, rowData),
+              },
+            ]
+          : []),
+      ]}
     />
   );
 };

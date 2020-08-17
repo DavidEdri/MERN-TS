@@ -1,5 +1,6 @@
-export type UserFields = {
-  _id: string;
+import { BaseFields } from "./BaseFields";
+
+export type UserFields = BaseFields & {
   name: string;
   email: string;
   password: string;
@@ -8,6 +9,4 @@ export type UserFields = {
   activateToken?: string;
   resetPasswordToken?: string;
   resetPasswordExpires?: Date;
-  createdAt: Date;
-  updatedAt: Date;
 };

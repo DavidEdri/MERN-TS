@@ -1,11 +1,9 @@
 import { UserFields } from "./models";
 
-export type UserPayload = {
-  _id: UserFields["_id"];
-  name: UserFields["name"];
-  email: UserFields["email"];
-  rank: UserFields["rank"];
-  active: UserFields["active"];
+export type UserPayload = Pick<
+  UserFields,
+  "_id" | "name" | "rank" | "email" | "active"
+> & {
   iat: number;
   exp: number;
 };

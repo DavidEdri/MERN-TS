@@ -1913,6 +1913,14 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
+"@types/mongoose@^5.7.36":
+  version "5.7.36"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.7.36.tgz#2dae28c63041c6afba8a83ea02969f463b3f1021"
+  integrity sha512-ggFXgvkHgCNlT35B9d/heDYfSqOSwTmQjkRoR32sObGV5Xjd0N0WWuYlLzqeCg94j4hYN/OZxZ1VNNLltX/IVQ==
+  dependencies:
+    "@types/mongodb" "*"
+    "@types/node" "*"
+
 "@types/node@*", "@types/node@^14.0.27":
   version "14.0.27"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
@@ -5438,10 +5446,10 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
-ez-formikui@^0.1.44:
-  version "0.1.44"
-  resolved "https://registry.yarnpkg.com/ez-formikui/-/ez-formikui-0.1.44.tgz#a8db2cbc40bb69022f013e2b5d38f3f51ef7b0f4"
-  integrity sha512-lNOPDlv1kLtUnLDHAtJpTPgL+sYPZBLBna7DPpwCAHjQciYi4PRRyJ7VoUs7YYlxcpUAXJJ7wzF3up2cpubMOA==
+ez-formikui@^0.1.63:
+  version "0.1.63"
+  resolved "https://registry.yarnpkg.com/ez-formikui/-/ez-formikui-0.1.63.tgz#7d1405cd24a429c867474d64a3137b81dc88ae69"
+  integrity sha512-Rb2ZRBhJsatZWnHgfj5aB036SIIeo6SEkCDz8bvJcGTlqYCMAfVzGwAIzsX9Fp0IR26wjF4LH8FHqF+6PkbtAQ==
   dependencies:
     "@date-io/moment" "1.x"
     "@material-ui/core" "^4.6.1"

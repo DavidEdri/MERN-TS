@@ -28,6 +28,7 @@ export const yupErrorsToObj = (e: any) => {
     });
   } catch (error) {
     console.log("YupErrorsToObj : conversion error");
+    return false;
   }
   return errors;
 };

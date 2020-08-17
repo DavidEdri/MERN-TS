@@ -16,7 +16,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
-    "ez-formikui": "^0.1.51",
+    "ez-formikui": "^0.1.63",
     "formik": "^2.1.5",
     "jss": "^10.3.0",
     "jss-rtl": "^0.3.0",
