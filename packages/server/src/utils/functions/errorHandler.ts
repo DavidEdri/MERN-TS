@@ -1,9 +1,7 @@
 import { Request } from "express";
-import { pick } from "lodash";
 import { functions } from "@project/common";
-import { logError } from "./logger";
-import returnText from "../controllers/_text";
-import { UserDocument } from "../models/User";
+import { logError } from "../logger";
+import returnText from "../../controllers/_text";
 
 export const errorHandler = (error: any, req: Request) => {
   let json;
@@ -13,7 +11,7 @@ export const errorHandler = (error: any, req: Request) => {
     json = functions.yupErrorsToObj(error);
     status = 400;
 
-    return { json, status };
+    if (json) return { json, status };
   }
 
   logError(error, req);
@@ -23,6 +21,3 @@ export const errorHandler = (error: any, req: Request) => {
 
   return { json, status };
 };
-
-export const userToApi = (user: UserDocument | { [key: string]: any }) =>
-  pick(user, ["_id", "name", "email", "rank", "active"]);

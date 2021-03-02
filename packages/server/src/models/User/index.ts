@@ -1,8 +1,12 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 import bcrypt from "bcryptjs";
-import type { UserFields } from "@project/types";
+import { BaseUser } from "./DocumentType";
+import { UserFunctions } from "./functions";
 
-export type UserDocument = Document & UserFields;
+const { methods, statics } = UserFunctions;
+
+export type UserDocument = BaseUser & typeof methods;
+type Statics = Model<UserDocument> & typeof statics;
 
 const UserSchema = new Schema(
   {
@@ -40,6 +44,11 @@ const UserSchema = new Schema(
   { timestamps: true },
 );
 
+UserSchema.statics.checkDuplicates = statics.checkDuplicates;
+
+UserSchema.methods.generateJWT = methods.generateJWT;
+UserSchema.methods.matchPassword = methods.matchPassword;
+
 UserSchema.pre<UserDocument>("save", function (next) {
   const user = this;
 
@@ -56,4 +65,4 @@ UserSchema.pre<UserDocument>("save", function (next) {
   });
 });
 
-export default mongoose.model<UserDocument>("users", UserSchema);
+export default mongoose.model<UserDocument, Statics>("users", UserSchema);

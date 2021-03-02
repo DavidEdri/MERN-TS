@@ -1,17 +1,13 @@
-import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import jwt from "jsonwebtoken";
 import moment from "moment";
-import nodemailer from "nodemailer";
 import { RequestHandler } from "express";
 import { pick, omit } from "lodash";
 import { validation } from "@project/common";
 import returnText from "../_text";
 import { mailTemplates, functions as utilsFunctions } from "../../utils";
-import { mailConfig } from "../../config";
 import User from "../../models/User";
+import { sendMail } from "../../utils/functions";
 
-const formsValidations = validation;
 const { errorHandler } = utilsFunctions;
 
 const register: RequestHandler = async (req, res) => {
@@ -19,10 +15,10 @@ const register: RequestHandler = async (req, res) => {
   const errors: { [key: string]: string } = {};
 
   try {
-    await formsValidations.auth.register.validate(data, { abortEarly: false });
-    const user = await User.findOne({ email: data.email });
+    await validation.auth.register.validate(data, { abortEarly: false });
+    const exists = await User.checkDuplicates(data.email);
 
-    if (user) {
+    if (exists) {
       errors.email = returnText.emailExist;
       return res.status(400).json(errors);
     }
@@ -32,9 +28,7 @@ const register: RequestHandler = async (req, res) => {
       activateToken: crypto.randomBytes(20).toString("hex"),
     });
 
-    const transporter = nodemailer.createTransport(mailConfig);
-
-    await transporter.sendMail(
+    await sendMail(
       mailTemplates.registerEmail(newUser.email, newUser.activateToken!),
     );
     await newUser.save();
@@ -72,7 +66,7 @@ const login: RequestHandler = async (req, res) => {
   const errors: { [key: string]: string } = {};
 
   try {
-    await formsValidations.auth.login.validate(data, { abortEarly: false });
+    await validation.auth.login.validate(data, { abortEarly: false });
     const user = await User.findOne({ email: data.email });
 
     if (!user) {
@@ -80,21 +74,14 @@ const login: RequestHandler = async (req, res) => {
       return res.status(400).json(errors);
     }
 
-    const isMatch = await bcrypt.compare(data.password, user.password);
+    const isMatch = await user.matchPassword(data.password);
 
     if (!isMatch) {
       errors.general = returnText.passOrEmailError;
       return res.status(400).json(errors);
     }
 
-    const payload = utilsFunctions.userToApi(user);
-    const secret = process.env.JWT_SECRET;
-
-    if (!secret) throw new Error("no secret provided on .env file!");
-
-    const token = jwt.sign(payload, secret, {
-      expiresIn: process.env.JWT_EXPIRE,
-    });
+    const token = await user.generateJWT();
 
     return res.status(200).json({ success: true, token: `Bearer ${token}` });
   } catch (error) {
@@ -122,9 +109,7 @@ const passwordReset: RequestHandler = async (req, res) => {
     user.resetPasswordExpires = moment(new Date()).add(1, "day").toDate();
     await user.save();
 
-    const transporter = nodemailer.createTransport(mailConfig);
-
-    await transporter.sendMail(mailTemplates.resetPasswordEmail(email, token));
+    await sendMail(mailTemplates.resetPasswordEmail(email, token));
 
     return res.status(200).json({ success: true });
   } catch (error) {
@@ -194,12 +179,7 @@ const resendActivateMail: RequestHandler = async (req, res) => {
     user.activateToken = crypto.randomBytes(20).toString("hex");
     await user.save();
 
-    const transporter = nodemailer.createTransport(mailConfig);
-
-    transporter.sendMail(
-      mailTemplates.registerEmail(user.email, user.activateToken),
-    );
-
+    await sendMail(mailTemplates.registerEmail(user.email, user.activateToken));
     return res
       .status(200)
       .json({ msg: returnText.registerInstructions(user.email) });
