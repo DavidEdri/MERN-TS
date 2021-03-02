@@ -4,7 +4,7 @@ export default {
   secure: true,
   auth: {
     user: "apikey",
-    pass: process.env.EMAIL_API,
+    pass: process.env.EMAIL_API_KEY,
   },
   tls: {
     rejectUnauthorized: false,

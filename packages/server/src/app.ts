@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./envLoader"; // need to load first
 import mongoose from "mongoose";
 import express from "express";
 import bodyParser from "body-parser";
@@ -11,9 +11,8 @@ import { passportConfig } from "./config"; // need to load after routes
 
 const app = express();
 const publicFolder = path.join(__dirname, "public");
-const env = process.env.NODE_ENV || "development";
 
-const db = env === "test" ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
+const db = process.env.MONGO_URI;
 
 if (!db) throw new Error("no db provided on .env");
 

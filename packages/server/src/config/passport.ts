@@ -27,6 +27,6 @@ export default (passport: PassportStatic) => {
       } catch (error) {
         logError(error);
       }
-    })
+    }),
   );
 };
