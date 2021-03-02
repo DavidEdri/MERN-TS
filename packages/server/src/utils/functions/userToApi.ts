@@ -1,5 +1,6 @@
-import { UserFields } from "@project/types";
 import { pick } from "lodash";
+// eslint-disable-next-line import/no-cycle
+import { UserDocument } from "../../models/User";
 
-export const userToApi = <T extends UserFields>(user: T) =>
+export const userToApi = (user: UserDocument) =>
   pick(user, ["_id", "name", "email", "rank", "active"]);
