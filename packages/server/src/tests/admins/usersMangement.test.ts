@@ -1,5 +1,7 @@
 import request from "supertest";
 import bcrypt from "bcryptjs";
+import { constants } from "@project/common";
+import { omit } from "lodash";
 import app from "../../app";
 import { loggedinToken, adminToken, tearup } from "../data/users";
 import User from "../../models/User";
@@ -12,7 +14,7 @@ const addUser = {
   password: "newUser12",
   password2: "newUser12",
   active: true,
-  rank: 2,
+  rank: constants.adminRank,
 };
 
 describe("GET /admins/usersManagement/", () => {
@@ -45,9 +47,9 @@ describe("POST /admins/usersManagement/", () => {
 
     const user = await User.findOne({ email: addUser.email });
     const matchUser = { ...addUser };
-    delete matchUser.password;
-    delete matchUser.password2;
-    expect(user).toMatchObject(matchUser);
+    const verifyUser = omit(matchUser, ["password", "password2"]);
+
+    expect(user).toMatchObject(verifyUser);
   });
 });
 

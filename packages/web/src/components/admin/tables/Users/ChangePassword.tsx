@@ -1,13 +1,14 @@
 import React from "react";
 import EZFormikUI, { AfterDefaultSubmit } from "ez-formikui";
 import { validation } from "@project/common";
+import { UserFields } from "@project/types";
 import { TableActions } from "../../../common/TableAbstract";
 import text from "../../../../helpers/text";
 
 type Props = {
   tableActions: TableActions;
   url: string;
-  rowData: any;
+  rowData: UserFields;
 };
 
 const ChangePassword: React.FC<Props> = ({ tableActions, url, rowData }) => {

@@ -8,14 +8,14 @@ beforeAll(async () => {
   await tearup(true);
 });
 
-describe("GET /users/userActions/refreshJWT", () => {
+describe("GET /users/profile/refreshJWT", () => {
   it("should get unauthorized error", async () => {
-    await request(app).get("/users/userActions/refreshJWT").expect(401);
+    await request(app).get("/users/profile/refreshJWT").expect(401);
   });
 
   it("should get new jwt token", async () => {
     const response = await request(app)
-      .get("/users/userActions/refreshJWT")
+      .get("/users/profile/refreshJWT")
       .set("Authorization", `Bearer ${loggedinToken}`)
       .expect(200);
 
@@ -26,14 +26,14 @@ describe("GET /users/userActions/refreshJWT", () => {
   });
 });
 
-describe("POST /users/userActions/editInfo", () => {
+describe("POST /users/profile/editInfo", () => {
   it("should change user info", async () => {
     const newInfo = {
       name: "New",
       passwords: { password: "newNew12", password2: "newNew12" },
     };
     await request(app)
-      .post("/users/userActions/editInfo")
+      .post("/users/profile/editInfo")
       .set("Authorization", `Bearer ${loggedinToken}`)
       .send(newInfo)
       .expect(200);
@@ -41,7 +41,7 @@ describe("POST /users/userActions/editInfo", () => {
     const user = await User.findById(firstUser._id);
     const isMatch = await bcrypt.compare(
       newInfo.passwords.password,
-      user?.password || "notSamePass"
+      user?.password || "notSamePass",
     );
 
     expect(isMatch).toBe(true);

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserPayload } from "@project/types";
 
 type State = {
@@ -15,8 +15,8 @@ const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (_, { payload }) => ({
-      isLoggedin: Object.keys(payload).length !== 0,
+    setUser: (_, { payload }: PayloadAction<UserPayload | undefined>) => ({
+      isLoggedin: !!payload,
       user: payload,
     }),
   },

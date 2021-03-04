@@ -2,8 +2,8 @@
 !package.json 
 !packages/server/package.json 
 !packages/common/package.json 
+!packages/server/.env.production 
 !packages/server/dist 
 !packages/common/dist 
 !packages/web/build 
-!packages/server/.env 
 !packages/@types

@@ -7,16 +7,13 @@ COPY ./packages/server/package.json ./packages/server/
 COPY ./packages/common/package.json ./packages/common/
 COPY ./packages/@types ./packages/@types
 
-RUN npm i -g yarn --no-bin-links
 RUN yarn install --production
 
 COPY ./packages/server/dist ./packages/server/dist
 COPY ./packages/common/dist ./packages/common/dist
 COPY ./packages/web/build ./packages/server/dist/public
-COPY ./packages/server/.env ./packages/server/.env
-
-WORKDIR /mern/packages/server
+COPY ./packages/server/.env.production ./packages/server/.env.production
 
 EXPOSE 5000
 
-CMD ["npm", "run", "start"]
+CMD ["yarn", "serve"]

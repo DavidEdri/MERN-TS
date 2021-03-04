@@ -34,9 +34,9 @@ const post: RequestHandler = async (req, res) => {
     await validation.admins.adminAddUser.validate(data, {
       abortEarly: false,
     });
-    const user = await User.findOne({ email: data.email });
+    const exists = await User.checkDuplicates(data.email);
 
-    if (user) {
+    if (exists) {
       errors.general = returnText.emailExist;
       return res.status(400).json(errors);
     }
@@ -68,12 +68,15 @@ const del: RequestHandler = async (req, res) => {
 
 const put: RequestHandler = async (req, res) => {
   const { id } = req.params;
-  const data = pick(req.body, ["name", "rank", "active"]);
+  const data = pick(req.body, ["name", "rank", "active", "email"]);
 
   try {
     await validation.admins.adminEditUser.validate(data, {
       abortEarly: false,
     });
+
+    const exists = await User.checkDuplicates(data.email, id);
+    if (exists) return res.status(400).json({ error: returnText.emailExist });
 
     const user = await User.findById(id);
     if (!user) {

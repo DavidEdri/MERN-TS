@@ -1,12 +1,12 @@
 import { Color as VariantType } from "@material-ui/lab/Alert";
-import { setDialog, setSnackbar } from "../slices/utils";
+import { setDialog, setSnackbar, Dialog, Snackbar } from "../slices/utils";
 
-export const openDialog = (
-  title: string,
-  body: JSX.Element | string,
-  buttonText = "",
+export const openDialog = ({
+  body,
   fullscreen = false,
-) =>
+  title,
+  buttonText,
+}: Omit<Dialog, "isOpen">) =>
   setDialog({
     title,
     body,
@@ -24,7 +24,7 @@ export const closeDialog = () =>
     isOpen: false,
   });
 
-export const openSnackbar = (msg: string | JSX.Element, variant: VariantType) =>
+export const openSnackbar = ({ msg, variant }: Omit<Snackbar, "isOpen">) =>
   setSnackbar({
     msg,
     variant,
@@ -33,4 +33,4 @@ export const openSnackbar = (msg: string | JSX.Element, variant: VariantType) =>
 
 // passing variant on close to keep same color
 export const closeSnackbar = (variant: VariantType) =>
-  setSnackbar({ msg: "", variant });
+  setSnackbar({ msg: "", variant, isOpen: false });

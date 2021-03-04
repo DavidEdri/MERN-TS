@@ -3,6 +3,6 @@ import userActions from "../api/users/userActions";
 
 const router = Router();
 
-router.use("/userActions", userActions);
+router.use("/profile", userActions);
 
 export default router;

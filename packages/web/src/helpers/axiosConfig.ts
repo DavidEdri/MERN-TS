@@ -9,7 +9,7 @@ const gotMsg = (obj: any) =>
   typeof obj === "object" && "msg" in obj && typeof obj.msg === "string";
 
 const showMsg = (msg: string, variant: VariantType) => {
-  store.dispatch(openSnackbar(msg, variant));
+  store.dispatch(openSnackbar({ msg, variant }));
 };
 
 const applyAxiosConfig = () => {

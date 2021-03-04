@@ -10,6 +10,8 @@ export const firstUser = {
   email: "David1@dummyMail.com",
   password: "a123456b",
   activateToken: "Token",
+  rank: 1,
+  active: false,
 };
 
 export const adminUser = {
@@ -19,6 +21,7 @@ export const adminUser = {
   rank: constants.adminRank,
   password: "a123456b",
   activateToken: "Token",
+  active: false,
 };
 
 const secret = process.env.JWT_SECRET || "defaultSecret";

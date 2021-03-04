@@ -51,7 +51,7 @@ export default function EditInfo() {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           fields={fields(user)}
           title={text.editProfileInfo}
-          onSubmit="/users/userActions/editInfo"
+          onSubmit="/users/profile/editInfo"
           afterDefaultSubmit={afterDefaultSubmit}
           validationSchema={validation.users.editInfo}
           useCaptcha={isProduction()}

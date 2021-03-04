@@ -33,14 +33,16 @@ export default function Users() {
 
   const onChangePassClick = (rowData: any, tableActions: TableActions) => {
     dispatch(
-      openDialog(
-        text.adminUsers,
-        <ChangePassword
-          rowData={rowData}
-          tableActions={tableActions}
-          url={urls.changePass(rowData._id)}
-        />,
-      ),
+      openDialog({
+        title: text.adminUsers,
+        body: (
+          <ChangePassword
+            rowData={rowData}
+            tableActions={tableActions}
+            url={urls.changePass(rowData._id)}
+          />
+        ),
+      }),
     );
   };
 
@@ -50,7 +52,6 @@ export default function Users() {
       title: text.usersEmailTitle,
       field: "email",
       filtering: false,
-      editable: "never",
     },
     {
       title: text.usersRankTitle,

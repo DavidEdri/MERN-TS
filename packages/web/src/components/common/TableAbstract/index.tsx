@@ -51,6 +51,23 @@ type Props = {
   tableOptions?: Options<{}>;
 };
 
+const errorToJSX = (err: any) => {
+  try {
+    const errObj = err.response.data;
+    const errors = (
+      <div>
+        {Object.keys(errObj).map((e, i) => (
+          <p key={i}>{`${e} : ${errObj[e]}\n`}</p>
+        ))}
+      </div>
+    );
+
+    return errors;
+  } catch (error) {
+    return text.serverError;
+  }
+};
+
 // TODO fix console errors (errors comes from Material-table package, need to wait for fix)
 const TableAbstract: React.FC<Props> = ({
   title,
@@ -93,12 +110,11 @@ const TableAbstract: React.FC<Props> = ({
 
   function formDialog(Form: React.ElementType, rowData?: any) {
     dispatch(
-      openDialog(
+      openDialog({
         title,
-        <Form tableActions={tableActions} rowData={rowData} />,
-        "",
-        addFormFullWidth,
-      ),
+        body: <Form tableActions={tableActions} rowData={rowData} />,
+        fullscreen: addFormFullWidth,
+      }),
     );
   }
 
@@ -147,10 +163,12 @@ const TableAbstract: React.FC<Props> = ({
                       setTableData(d);
                     }
 
-                    resolve();
+                    resolve(undefined);
                   })
-                  .catch(() => {
-                    dispatch(openSnackbar(text.serverError, "error"));
+                  .catch((err) => {
+                    const errors = errorToJSX(err);
+
+                    dispatch(openSnackbar({ msg: errors, variant: "error" }));
                     reject();
                   });
               })
@@ -165,10 +183,12 @@ const TableAbstract: React.FC<Props> = ({
                     const index = d.indexOf(oldData);
                     d.splice(index, 1);
                     setTableData(d);
-                    resolve();
+                    resolve(undefined);
                   })
-                  .catch(() => {
-                    dispatch(openSnackbar(text.serverError, "error"));
+                  .catch((err) => {
+                    const errors = errorToJSX(err);
+
+                    dispatch(openSnackbar({ msg: errors, variant: "error" }));
                     reject();
                   });
               })
@@ -180,19 +200,12 @@ const TableAbstract: React.FC<Props> = ({
                 Axios.post(urls.add!, newData)
                   .then((res) => {
                     setTableData((old) => [...old, res.data]);
-                    resolve();
+                    resolve(undefined);
                   })
                   .catch((err) => {
-                    const errObj = err.response.data;
-                    const errors = (
-                      <div>
-                        {Object.keys(errObj).map((e, i) => (
-                          <p key={i}>{`${e} : ${errObj[e]}\n`}</p>
-                        ))}
-                      </div>
-                    );
+                    const errors = errorToJSX(err);
 
-                    dispatch(openSnackbar(errors, "error"));
+                    dispatch(openSnackbar({ msg: errors, variant: "error" }));
                     reject();
                   });
               })
