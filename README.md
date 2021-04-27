@@ -6,9 +6,9 @@ A MERN template that uses [Yarn](https://yarnpkg.com/) monorepo and [TypeScript]
 - [configuration](#configuration)
   - [server](#server-config)
     - [env](#server-env)
-    - [email config](email-config)
-  - [web](web-config)
-    - [env](web-env)
+    - [email config](#email-config)
+  - [web](#web-config)
+    - [env](#web-env)
 - [develop](#develop)
 - [build](#build)
 - [serve](#serve)
@@ -41,7 +41,7 @@ and change the variables:
 
 **JWT_EXPIRE** - the duration for the jwt ([usage example](https://github.com/auth0/node-jsonwebtoken/blob/master/README.md#usage) check expiresIn field)
 
-**EMAIL_API_KEY** - api key for email sending (the default is [sendgrid](https://sendgrid.com/) to change that go to [email config](email-config))
+**EMAIL_API_KEY** - api key for email sending (the default is [sendgrid](https://sendgrid.com/) to change that go to [email config](#email-config))
 
 **SITE_MAIL** - the email address which will be shown as the sender
 
