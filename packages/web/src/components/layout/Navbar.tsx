@@ -17,8 +17,8 @@ const adminLinks: LinksArr = AdminsRoutes.filter((r) => r.linkText).map(
   }),
 );
 
-const links = [...guestLinks, ...userLinks];
+const links = [...guestLinks, ...userLinks, ...adminLinks];
 
 export default function Navbar() {
-  return <NavbarAbstract links={links} adminLinks={adminLinks} />;
+  return <NavbarAbstract links={links} />;
 }

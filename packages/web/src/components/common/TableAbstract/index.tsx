@@ -4,14 +4,16 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import MaterialTable, { Column, Options } from "material-table";
 import { useDispatch } from "react-redux";
+import { constants } from "@project/common";
 import {
   openSnackbar,
   openDialog,
   closeDialog,
 } from "../../../redux/actions/utilsActions";
 import { isRTL } from "../../../helpers/constants";
-import text from "../../../helpers/text";
 import hebrewBody from "./hebrew";
+
+const { text } = constants;
 
 type RowData = { _id: string };
 
@@ -229,7 +231,7 @@ const TableAbstract = <T extends RowData>({
           ? [
               {
                 icon: "edit",
-                tooltip: "ערוך",
+                tooltip: text.tableEdit,
                 onClick: (e: any, rowData: any) =>
                   formDialog(EditForm, rowData),
               },

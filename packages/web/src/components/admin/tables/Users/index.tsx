@@ -7,10 +7,11 @@ import TableAbstract, {
   TableActions,
   Columns,
 } from "../../../common/TableAbstract";
-import text from "../../../../helpers/text";
 import { openDialog } from "../../../../redux/actions/utilsActions";
 import AddUser from "./AddUser";
 import ChangePassword from "./ChangePassword";
+
+const { text } = constants;
 
 const ranksToLookup = (ranks: { label: string; value: any }[]) => {
   const res: { [key: string]: any } = {};

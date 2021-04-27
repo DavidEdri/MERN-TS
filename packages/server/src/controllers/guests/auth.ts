@@ -2,11 +2,12 @@ import crypto from "crypto";
 import moment from "moment";
 import { RequestHandler } from "express";
 import { pick, omit } from "lodash";
-import { validation } from "@project/common";
-import returnText from "../_text";
+import { constants, validation } from "@project/common";
 import { mailTemplates, functions as utilsFunctions } from "../../utils";
 import User from "../../models/User";
 import { sendMail } from "../../utils/functions";
+
+const { text: returnText } = constants;
 
 const { errorHandler } = utilsFunctions;
 

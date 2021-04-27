@@ -1,7 +1,9 @@
+import { constants } from "@project/common";
 import AdminHome from "../components/admin/Home";
 import Users from "../components/admin/tables/Users";
-import text from "../helpers/text";
 import { RouteType } from "./RouteType";
+
+const { text } = constants;
 
 const routes: RouteType[] = [
   {

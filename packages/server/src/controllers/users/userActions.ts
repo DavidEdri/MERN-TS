@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 import { RequestHandler } from "express";
-import { functions, validation } from "@project/common";
+import { constants, functions, validation } from "@project/common";
 import User from "../../models/User";
-import returnText from "../_text";
 import { functions as utilsFunctions } from "../../utils";
 
+const { text: returnText } = constants;
 const { userToApi, errorHandler } = utilsFunctions;
 
 const refreshJWT: RequestHandler = async (req, res) => {

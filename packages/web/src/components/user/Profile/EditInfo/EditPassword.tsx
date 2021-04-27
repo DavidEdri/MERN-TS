@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { OtherComponent } from "ez-formikui";
 import { TextField, Button } from "@material-ui/core";
-import text from "../../../../helpers/text";
+import { constants } from "@project/common";
+
+const { text } = constants;
 
 const EditPassword: OtherComponent = ({ value, errorMsg, setValue }) => {
   const [editPass, setEditPass] = useState(false);

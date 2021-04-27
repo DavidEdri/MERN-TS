@@ -20,8 +20,10 @@ import {
 import ShowMoreIcon from "@material-ui/icons/ExpandMore";
 import ShowLessIcon from "@material-ui/icons/ExpandLess";
 import EmailIcon from "@material-ui/icons/Email";
-import text from "../../../helpers/text";
+import { constants } from "@project/common";
 import { useGuaranteedUserSelector } from "../../../redux";
+
+const { text } = constants;
 
 const useStyles = makeStyles((theme) => ({
   root: {

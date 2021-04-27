@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import EZFormikUI, { Fields, AfterDefaultSubmit } from "ez-formikui";
 import { Link, useHistory, RouteComponentProps } from "react-router-dom";
-import { validation } from "@project/common";
+import { constants, validation } from "@project/common";
 import { useDispatch } from "react-redux";
 import { Button, Grid, Box } from "@material-ui/core";
 import { isProduction } from "../../helpers/functions";
 import { loginUser } from "../../redux/actions/authActions";
-import text from "../../helpers/text";
 import { useTypedSelector } from "../../redux";
+
+const { text } = constants;
 
 const fields: Fields = [
   {

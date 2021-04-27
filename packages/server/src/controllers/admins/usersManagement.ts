@@ -1,9 +1,10 @@
-import { validation } from "@project/common";
+import { validation, constants } from "@project/common";
 import { pick, omit } from "lodash";
 import { RequestHandler } from "express";
 import User from "../../models/User";
-import returnText from "../_text";
 import { functions as utilsFunctions } from "../../utils";
+
+const { text: returnText } = constants;
 
 const { userToApi, errorHandler } = utilsFunctions;
 

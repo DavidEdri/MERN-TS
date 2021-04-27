@@ -1,9 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { Color as VariantType } from "@material-ui/lab/Alert";
+import { constants } from "@project/common";
 import store from "../redux";
 import { logoutUser } from "../redux/actions/authActions";
 import { openSnackbar } from "../redux/actions/utilsActions";
-import text from "./text";
+
+const { text } = constants;
 
 const gotMsg = (obj: any) =>
   typeof obj === "object" && "msg" in obj && typeof obj.msg === "string";

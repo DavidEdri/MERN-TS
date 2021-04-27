@@ -8,7 +8,9 @@ import {
   Fade,
   makeStyles,
 } from "@material-ui/core";
-import text from "../../helpers/text";
+import { constants } from "@project/common";
+
+const { text } = constants;
 
 const useStyles = makeStyles((theme) => ({
   card: {

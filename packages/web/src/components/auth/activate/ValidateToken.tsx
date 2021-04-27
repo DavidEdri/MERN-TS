@@ -9,9 +9,11 @@ import {
   Box,
   CircularProgress,
 } from "@material-ui/core";
+import { constants } from "@project/common";
 import { logoutUser } from "../../../redux/actions/authActions";
-import text from "../../../helpers/text";
 import { useTypedSelector } from "../../../redux";
+
+const { text } = constants;
 
 const ValidateToken: React.FC<RouteComponentProps<{ token: string }>> = ({
   match: { params },

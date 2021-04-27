@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Grid, Typography, Button, Box } from "@material-ui/core";
-import text from "../../../helpers/text";
+import { constants } from "@project/common";
 import { useTypedSelector } from "../../../redux";
+
+const { text } = constants;
 
 export default function ActivateAccount() {
   const [clickable, setClickable] = useState(true);

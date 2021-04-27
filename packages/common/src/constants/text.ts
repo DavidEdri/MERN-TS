@@ -1,7 +1,12 @@
-export default {
-  // axios config
-  serverError: "Server error, try again later",
-
+export const text = {
+  emailExist: "Email address already in use",
+  emailNotFound: "Email address not found",
+  serverError: "Server error try again later",
+  passOrEmailError: "Invalid Email or Password",
+  registerInstructions: (mail: string) =>
+    `Follow the instructions sent to the mail: ${mail}`,
+  tokenLinkError: "Token Invalid or Expired",
+  passwordChanged: "Password changed successfully",
   // dialog
   dialogClose: "Close",
 
@@ -20,6 +25,7 @@ export default {
 
   // tableAbstract
   tableAdd: "Add new item",
+  tableEdit: "Edit",
   // admin links
   adminUsersLink: "Users",
   adminPanel: "Admin Panel",

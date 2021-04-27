@@ -1,7 +1,9 @@
+import { constants } from "@project/common";
 import DashboardHome from "../components/user/Home";
 import Profile from "../components/user/Profile";
-import text from "../helpers/text";
 import { RouteType } from "./RouteType";
+
+const { text } = constants;
 
 const routes: RouteType[] = [
   {

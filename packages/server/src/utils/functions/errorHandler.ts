@@ -1,7 +1,8 @@
 import { Request } from "express";
-import { functions } from "@project/common";
+import { constants, functions } from "@project/common";
 import { logError } from "../logger";
-import returnText from "../../controllers/_text";
+
+const { text: returnText } = constants;
 
 export const errorHandler = (error: any, req: Request) => {
   let json;

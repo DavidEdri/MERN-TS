@@ -15,24 +15,24 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import UserIcon from "@material-ui/icons/Person";
-import { functions } from "@project/common";
+import { constants, functions } from "@project/common";
 import { logoutUser } from "../../../redux/actions/authActions";
 import { isRTL } from "../../../helpers/constants";
-import text from "../../../helpers/text";
 import SelectMenu from "../SelectMenu";
 import useStyles from "./style";
 import NavLink from "./NavLink";
 import { RouteType } from "../../../routes/RouteType";
 import { useTypedSelector } from "../../../redux";
 
+const { text } = constants;
+
 type LinksArray = RouteType[];
 
 type Props = {
   links: LinksArray;
-  adminLinks?: LinksArray;
 };
 
-const NavbarAbstract: React.FC<Props> = ({ links, adminLinks }) => {
+const NavbarAbstract: React.FC<Props> = ({ links }) => {
   const history = useHistory();
   const auth = useTypedSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ const NavbarAbstract: React.FC<Props> = ({ links, adminLinks }) => {
   const classes = useStyles({ margin });
   const { isLoggedin } = auth;
   const isAdmin = isLoggedin && functions.isAdmin(auth.user);
+  const adminLinks = links.filter((l) => l.restriction === "admin");
 
   const typeToState = (type?: "admin" | "loggedIn" | "loggedOut") => {
     switch (type) {
@@ -176,8 +177,8 @@ const NavbarAbstract: React.FC<Props> = ({ links, adminLinks }) => {
         </div>
         <Divider />
         <List>
-          {renderLinks(links)}
-          {adminLinks && isAdmin && (
+          {renderLinks(links.filter((l) => l.restriction !== "admin"))}
+          {adminLinks.length > 0 && isAdmin && (
             <>
               <Divider />
               <ListSubheader className={classes.textCenter}>

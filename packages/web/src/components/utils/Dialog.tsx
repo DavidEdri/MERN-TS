@@ -14,9 +14,11 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import { constants } from "@project/common";
 import { closeDialog } from "../../redux/actions/utilsActions";
-import text from "../../helpers/text";
 import { useTypedSelector } from "../../redux";
+
+const { text } = constants;
 
 const styles = (theme: Theme) =>
   createStyles({

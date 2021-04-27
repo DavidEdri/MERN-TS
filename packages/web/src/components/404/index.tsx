@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { constants } from "@project/common";
 import Svg from "./svg";
-import text from "../../helpers/text";
+
+const { text } = constants;
 
 const useStyles = makeStyles(() => ({
   btn: {

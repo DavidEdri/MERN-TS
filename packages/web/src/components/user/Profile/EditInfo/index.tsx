@@ -1,14 +1,15 @@
 import React from "react";
 import EZFormikUI, { Fields } from "ez-formikui";
 import { useDispatch } from "react-redux";
-import { validation } from "@project/common";
+import { constants, validation } from "@project/common";
 import { UserPayload } from "@project/types";
 import Grid from "@material-ui/core/Grid";
 import { isProduction } from "../../../../helpers/functions";
 import { refreshJwt } from "../../../../redux/actions/authActions";
-import text from "../../../../helpers/text";
 import EditPassword from "./EditPassword";
 import { useGuaranteedUserSelector } from "../../../../redux";
+
+const { text } = constants;
 
 const fields = (user: UserPayload): Fields => [
   {

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import EZFormikUI, { Fields } from "ez-formikui";
 import { useHistory, RouteComponentProps } from "react-router-dom";
-import { validation } from "@project/common";
+import { constants, validation } from "@project/common";
 import { Grid, Typography, Box } from "@material-ui/core";
 import { isProduction } from "../../../helpers/functions";
 import Loading from "../../common/Loading";
-import text from "../../../helpers/text";
 import { useTypedSelector } from "../../../redux";
+
+const { text } = constants;
 
 const fields: Fields = [
   {
