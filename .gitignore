@@ -9,3 +9,4 @@ packages/server/**/public
 packages/web/build
 log
 *.log
+yarn.lock
