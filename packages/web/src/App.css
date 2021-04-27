@@ -1,3 +1,14 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-container {
+  flex: 1;
+}
+
 /* 404 svg */
 .cls-1 {
   fill: #ffc541;

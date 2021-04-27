@@ -27,35 +27,42 @@ export default function App() {
   return (
     <Provider store={store}>
       <AppProvider>
-        <Route path="/" component={Navbar} />
-        <Container maxWidth={false} style={{ minHeight: "82vh" }}>
-          <Switch>
-            {GuestsRoutes.map((r) => (
-              <Route exact path={r.path} component={r.component} key={r.path} />
-            ))}
+        <div className="app">
+          <Route path="/" component={Navbar} />
+          <Container maxWidth={false} className="main-container">
+            <Switch>
+              {GuestsRoutes.map((r) => (
+                <Route
+                  exact
+                  path={r.path}
+                  component={r.component}
+                  key={r.path}
+                />
+              ))}
 
-            {UsersRoutes.map((r) => (
-              <LoggedinRoute
-                exact
-                path={r.path}
-                component={r.component}
-                key={r.path}
-              />
-            ))}
+              {UsersRoutes.map((r) => (
+                <LoggedinRoute
+                  exact
+                  path={r.path}
+                  component={r.component}
+                  key={r.path}
+                />
+              ))}
 
-            {AdminsRoutes.map((r) => (
-              <AdminRoute
-                exact
-                path={r.path}
-                component={r.component}
-                key={r.path}
-              />
-            ))}
+              {AdminsRoutes.map((r) => (
+                <AdminRoute
+                  exact
+                  path={r.path}
+                  component={r.component}
+                  key={r.path}
+                />
+              ))}
 
-            <Route component={PageNotFound} />
-          </Switch>
-        </Container>
-        <Footer />
+              <Route component={PageNotFound} />
+            </Switch>
+          </Container>
+          <Footer />
+        </div>
         <Utils />
       </AppProvider>
     </Provider>
