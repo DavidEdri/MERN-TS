@@ -6,12 +6,12 @@ import { TableActions } from "../../../common/TableAbstract";
 import text from "../../../../helpers/text";
 
 type Props = {
-  tableActions: TableActions;
+  tableActions: TableActions<UserFields>;
   url: string;
   rowData: UserFields;
 };
 
-const ChangePassword: React.FC<Props> = ({ tableActions, url, rowData }) => {
+const ChangePassword = ({ tableActions, url, rowData }: Props) => {
   const afterDefaultSubmit: AfterDefaultSubmit = () => {
     tableActions.closeDialog();
   };

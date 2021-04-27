@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/ban-types */
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import MaterialTable, { Column, Options } from "material-table";
@@ -11,6 +13,8 @@ import { isRTL } from "../../../helpers/constants";
 import text from "../../../helpers/text";
 import hebrewBody from "./hebrew";
 
+type RowData = { _id: string };
+
 export type Urls = {
   mount: string;
   delete?: (id: string) => string;
@@ -22,28 +26,23 @@ export type Urls = {
   [key: string]: any;
 };
 
-export type TableActions = {
-  setTableData: React.Dispatch<
-    React.SetStateAction<
-      {
-        [key: string]: any;
-      }[]
-    >
-  >;
-  addNewRow: (newItem: any) => void;
-  updateRow: (newData: { _id: string; [key: string]: any }) => void;
+export type TableActions<T extends RowData> = {
+  setTableData: React.Dispatch<React.SetStateAction<T[]>>;
+  addNewRow: (newItem: T) => void;
+  updateRow: (newData: T) => void;
+  deleteRow: (newData: T) => void;
   closeDialog: () => void;
-  openDialog: (Form: React.ElementType, rowData?: any) => void;
+  openDialog: (Form: React.ElementType, rowData?: T) => void;
 };
 
-export type Columns = (
-  tableActions: TableActions,
-) => Column<{ [key: string]: any }>[];
+export type Columns<T extends RowData> = (
+  tableActions: TableActions<T>,
+) => Column<T>[];
 
-type Props = {
+type Props<T extends RowData> = {
   title: string;
   urls: Urls;
-  columns: Columns;
+  columns: Columns<T>;
   AddForm?: React.ElementType;
   EditForm?: React.ElementType;
   addFormFullWidth?: boolean;
@@ -69,7 +68,7 @@ const errorToJSX = (err: any) => {
 };
 
 // TODO fix console errors (errors comes from Material-table package, need to wait for fix)
-const TableAbstract: React.FC<Props> = ({
+const TableAbstract = <T extends RowData>({
   title,
   urls,
   columns,
@@ -77,16 +76,16 @@ const TableAbstract: React.FC<Props> = ({
   EditForm,
   addFormFullWidth = false,
   tableOptions = {},
-}) => {
-  const [tableData, setTableData] = useState<{ [key: string]: any }[]>([]);
+}: Props<T>) => {
+  const [tableData, setTableData] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const addNewRow: TableActions["addNewRow"] = (newItem) => {
+  const addNewRow: TableActions<T>["addNewRow"] = (newItem) => {
     setTableData((old) => [newItem, ...old]);
   };
 
-  const updateRow: TableActions["updateRow"] = (newData) => {
+  const updateRow: TableActions<T>["updateRow"] = (newData) => {
     const d = [...tableData];
     const index = tableData.findIndex((a) => a._id === newData._id);
     if (index > -1) {
@@ -95,20 +94,30 @@ const TableAbstract: React.FC<Props> = ({
     }
   };
 
-  const closeTableDialog: TableActions["closeDialog"] = () => {
+  const deleteRow: TableActions<T>["deleteRow"] = (oldItem) => {
+    const d = [...tableData];
+    const index = d.indexOf(oldItem);
+    if (index > -1) {
+      d.splice(index, 1);
+      setTableData(d);
+    }
+  };
+
+  const closeTableDialog: TableActions<T>["closeDialog"] = () => {
     dispatch(closeDialog());
   };
 
-  const tableActions: TableActions = {
+  const tableActions: TableActions<T> = {
     setTableData,
     addNewRow,
     updateRow,
+    deleteRow,
     closeDialog: closeTableDialog,
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     openDialog: formDialog,
   };
 
-  function formDialog(Form: React.ElementType, rowData?: any) {
+  function formDialog(Form: React.ElementType, rowData?: T) {
     dispatch(
       openDialog({
         title,
@@ -136,18 +145,20 @@ const TableAbstract: React.FC<Props> = ({
       data={tableData}
       localization={isRTL ? hebrewBody : undefined}
       isLoading={loading}
-      options={{
-        selection: false,
-        maxBodyHeight: "100vh",
-        filtering: true,
-        exportButton: true,
-        sorting: true,
-        columnsButton: true,
-        pageSize: 10,
-        pageSizeOptions: [10, 100, 1000],
-        padding: "dense",
-        ...tableOptions,
-      }}
+      options={
+        {
+          selection: false,
+          maxBodyHeight: "100vh",
+          filtering: true,
+          exportButton: true,
+          sorting: true,
+          columnsButton: true,
+          pageSize: 10,
+          pageSizeOptions: [10, 100, 1000],
+          padding: "dense",
+          ...tableOptions,
+        } as any
+      }
       columns={columns(tableActions)}
       editable={{
         onRowUpdate: urls.update
@@ -156,12 +167,7 @@ const TableAbstract: React.FC<Props> = ({
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 Axios.put(urls.update!(newData._id), newData)
                   .then(() => {
-                    const d = [...tableData];
-                    const index = tableData.indexOf(oldData || {});
-                    if (index > -1) {
-                      d[index] = newData;
-                      setTableData(d);
-                    }
+                    updateRow(newData);
 
                     resolve(undefined);
                   })
@@ -179,10 +185,7 @@ const TableAbstract: React.FC<Props> = ({
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 Axios.delete(urls.delete!(oldData._id))
                   .then(() => {
-                    const d = [...tableData];
-                    const index = d.indexOf(oldData);
-                    d.splice(index, 1);
-                    setTableData(d);
+                    deleteRow(oldData);
                     resolve(undefined);
                   })
                   .catch((err) => {
@@ -199,7 +202,7 @@ const TableAbstract: React.FC<Props> = ({
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 Axios.post(urls.add!, newData)
                   .then((res) => {
-                    setTableData((old) => [...old, res.data]);
+                    addNewRow(res.data);
                     resolve(undefined);
                   })
                   .catch((err) => {

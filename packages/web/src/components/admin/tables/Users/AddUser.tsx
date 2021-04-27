@@ -1,14 +1,15 @@
 import React from "react";
 import EZFormikUI, { AfterDefaultSubmit } from "ez-formikui";
 import { constants, validation } from "@project/common";
+import { UserFields } from "@project/types";
 import { TableActions } from "../../../common/TableAbstract";
 import text from "../../../../helpers/text";
 
 type Props = {
-  tableActions: TableActions;
+  tableActions: TableActions<UserFields>;
 };
 
-const AddUser: React.FC<Props> = ({ tableActions }) => {
+const AddUser = ({ tableActions }: Props) => {
   const afterDefaultSubmit: AfterDefaultSubmit = (res) => {
     tableActions.setTableData((old) => [...old, res?.data]);
     tableActions.closeDialog();

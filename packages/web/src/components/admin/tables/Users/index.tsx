@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { constants } from "@project/common";
 import { Button } from "@material-ui/core";
+import { UserFields } from "@project/types";
 import TableAbstract, {
   TableActions,
   Columns,
@@ -31,7 +32,10 @@ const urls = {
 export default function Users() {
   const dispatch = useDispatch();
 
-  const onChangePassClick = (rowData: any, tableActions: TableActions) => {
+  const onChangePassClick = (
+    rowData: UserFields,
+    tableActions: TableActions<UserFields>,
+  ) => {
     dispatch(
       openDialog({
         title: text.adminUsers,
@@ -46,7 +50,7 @@ export default function Users() {
     );
   };
 
-  const columns: Columns = (tableActions) => [
+  const columns: Columns<UserFields> = (tableActions) => [
     { title: text.usersNameTitle, field: "name", filtering: false },
     {
       title: text.usersEmailTitle,
