@@ -30,7 +30,8 @@
     "operator-linebreak": "off",
     "object-curly-newline": "off",
     "linebreak-style": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/indent": "off"
   },
   "settings": {
     "import/resolver": {

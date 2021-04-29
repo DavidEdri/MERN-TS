@@ -6,12 +6,12 @@ import { functions as utilsFunctions } from "../../utils";
 
 const { text: returnText } = constants;
 
-const { userToApi, errorHandler } = utilsFunctions;
+const { errorHandler } = utilsFunctions;
 
 const get: RequestHandler = async (req, res) => {
   try {
     const users = await User.find().select("-password");
-    const result = users.map((u) => userToApi(u));
+    const result = users.map(async (u) => u.userToJSON());
 
     return res.status(200).json(result);
   } catch (error) {
@@ -45,7 +45,7 @@ const post: RequestHandler = async (req, res) => {
 
     await newUser.save();
 
-    return res.status(200).json(userToApi(newUser));
+    return res.status(200).json(newUser.userToJSON());
   } catch (error) {
     const { json, status } = errorHandler(error, req);
     return res.status(status).json(json);
@@ -90,7 +90,7 @@ const put: RequestHandler = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).json(userToApi(user));
+    return res.status(200).json(user.userToJSON());
   } catch (error) {
     const { json, status } = errorHandler(error, req);
     return res.status(status).json(json);

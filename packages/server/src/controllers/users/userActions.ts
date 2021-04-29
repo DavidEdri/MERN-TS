@@ -5,7 +5,7 @@ import User from "../../models/User";
 import { functions as utilsFunctions } from "../../utils";
 
 const { text: returnText } = constants;
-const { userToApi, errorHandler } = utilsFunctions;
+const { errorHandler } = utilsFunctions;
 
 const refreshJWT: RequestHandler = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ const refreshJWT: RequestHandler = async (req, res) => {
     const user = await User.findById(req.user!._id);
     if (!user) throw new Error("no user");
 
-    const payload = userToApi(user);
+    const payload = user.userToJSON();
     const secret = process.env.JWT_SECRET;
 
     if (!secret) throw new Error("no secret provided to .env");

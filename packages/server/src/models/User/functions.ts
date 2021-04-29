@@ -2,11 +2,11 @@
 import { Model } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { BaseUser } from "./DocumentType";
-import { userToApi } from "../../utils/functions";
+import { pick } from "lodash";
+import { UserDocument } from "./Document";
 
 const checkDuplicates = async function (
-  this: Model<BaseUser>,
+  this: Model<UserDocument>,
   email: string,
   id?: string,
 ) {
@@ -19,12 +19,16 @@ const checkDuplicates = async function (
   return !!user;
 };
 
-const matchPassword = async function (this: BaseUser, candidate: string) {
+const matchPassword = function (this: UserDocument, candidate: string) {
   return bcrypt.compareSync(candidate, this.password);
 };
 
-const generateJWT = async function (this: BaseUser) {
-  const payload = userToApi(this);
+const userToJSON = function (this: UserDocument) {
+  return pick(this, ["_id", "name", "email", "rank", "active"]);
+};
+
+const generateJWT = function (this: UserDocument) {
+  const payload = this.userToJSON();
   const jwtSecret = process.env.JWT_SECRET;
 
   if (!jwtSecret)
@@ -35,12 +39,12 @@ const generateJWT = async function (this: BaseUser) {
   });
 };
 
-export const UserFunctions = {
-  statics: {
-    checkDuplicates,
-  },
-  methods: {
-    generateJWT,
-    matchPassword,
-  },
+export const statics = {
+  checkDuplicates,
+};
+
+export const methods = {
+  generateJWT,
+  matchPassword,
+  userToJSON,
 };

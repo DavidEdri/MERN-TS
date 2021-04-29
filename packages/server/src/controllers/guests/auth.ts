@@ -75,14 +75,14 @@ const login: RequestHandler = async (req, res) => {
       return res.status(400).json(errors);
     }
 
-    const isMatch = await user.matchPassword(data.password);
+    const isMatch = user.matchPassword(data.password);
 
     if (!isMatch) {
       errors.general = returnText.passOrEmailError;
       return res.status(400).json(errors);
     }
 
-    const token = await user.generateJWT();
+    const token = user.generateJWT();
 
     return res.status(200).json({ success: true, token: `Bearer ${token}` });
   } catch (error) {

@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import { constants } from "@project/common";
 import User from "../../models/User";
-import { userToApi } from "../../utils/functions";
 
 export const firstUser = {
   _id: new mongoose.Types.ObjectId(),
@@ -26,11 +25,11 @@ export const adminUser = {
 
 const secret = process.env.JWT_SECRET || "defaultSecret";
 
-export const loggedinToken = jwt.sign(userToApi(firstUser), secret, {
+export const loggedinToken = jwt.sign(firstUser, secret, {
   expiresIn: process.env.JWT_EXPIRE,
 });
 
-export const adminToken = jwt.sign(userToApi(adminUser), secret, {
+export const adminToken = jwt.sign(adminUser, secret, {
   expiresIn: process.env.JWT_EXPIRE,
 });
 
